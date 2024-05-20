@@ -13,7 +13,7 @@ document.querySelector('#search-button')
         }))
             .then(response => response.json())
             .then(data => {
-                console.log(data['pages'][0]['key']);
+                console.log(data['pages']);
 
             
 
@@ -21,11 +21,9 @@ document.querySelector('#search-button')
                 const div = document.createElement('div');
                 data['pages'].forEach(page => {
 
-                    fetch('https://it.wikipedia.org/wiki/' + page['key'] + "?origin=*", {
-                        headers: {
-                        'Content-Type': 'application/json',
-                        }
-                    })
+                    console.log('https://en.wikipedia.org/w/api.php' + "?origin=*" + '&' + page['key']);
+
+                    fetch('https://en.wikipedia.org/w/api.php' + "?origin=*" + '&' + page['key'])
                         .then(response => response.json())
                         .then(data => console.log(data))
 

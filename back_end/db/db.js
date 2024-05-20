@@ -7,12 +7,10 @@ export function connectToDb(callback)  {
     .then((client) => {
         dbConnection = client.db()
         // dbConnection.collection('user').find().forEach(user => console.log(user))
-        return callback()
+        return callback(dbConnection)
     })
     .catch(err => {
         console.log(err);
-        return callback(err)
+        return callback(undefined, err)
     })
 }
-
-export function getDb() { dbConnection };
