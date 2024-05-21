@@ -101,5 +101,17 @@ document.querySelector('#complete-button')
         return
 
 
+    });
+
+document.querySelector('#daily-button')
+    .addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const dailyResult = await fetch('http://127.0.0.1:8000/testDailyArticle')
+
+        const dailyData = await dailyResult.json();
+
+        console.log(dailyData);
+
     })
 
