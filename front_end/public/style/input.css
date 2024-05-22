@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container-custom {
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+    padding: 1rem;
+}
+
+
+/*Pagedone Carousel CSS*/
+
+.swiper-wrapper {
+    width: 100%;
+    height: max-content !important;
+    padding-bottom: 64px !important;
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+    position: relative;
+}
+
+.swiper-pagination-bullet {
+    background: #4f46e5;
+}
+
+/*Pagedone Carousel CSS*/

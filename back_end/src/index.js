@@ -28,25 +28,32 @@ connectToDb((db, err) => {
     }
 });
 
+
+
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
+
+
+app.get('/homepageCarousel', (req, res) => {
+    res.send('FetchedCarouselHere');
+});
+
+
+
 app.post('/testSummary', async (req, res) => {
     try {
         const searchQuery = req.body.searchQuery;
+        const language = await wiki.setLang('it');
         const page = await wiki.page(searchQuery);
-        console.log(page);
-        //Response of type @Page object
+
         const summary = await page.summary();
-        console.log(summary);
         res.status(200).json(summary)
-        //Response of type @wikiSummary - contains the intro and the main image
 
     } catch (error) {
         console.log(error);
         res.status(404).json({ message: "Page Not Found" })
-        //=> Typeof wikiError
     }
 })
 
@@ -56,31 +63,40 @@ app.post('/testCompleteArticle', async (req, res) => {
 
         console.log("Search Query", searchQuery);
 
-        const searchResults = await wiki.search(searchQuery, {limit: 5});
+        if (searchQuery !== undefined) {
 
-        console.log(searchResults);
+            const language = await wiki.setLang('it');
+            const searchResults = await wiki.search(searchQuery, {limit: 5});
 
-        res.status(200).json(searchResults)
+
+            console.log(searchResults);
+
+            res.status(200).json(searchResults)
+
+            return
+        }
+
+        res.status(404).json({ message: "Page Not Found" })
 
     } catch (error) {
         console.log(error);
         res.status(404).json({ message: "Page Not Found" })
-        //=> Typeof wikiError
     }
 })
 
 app.get('/testDailyArticle', async (req, res) => {
     try {
 
-        const searchResults = await wiki.search(searchQuery, {limit: 5});
+        const language = await wiki.setLang('it');
 
-        console.log(searchResults);
+        const dailyResults = await wiki.onThisDay();
 
-        res.status(200).json(searchResults)
+        console.log(dailyResults);
+
+        res.status(200).json(dailyResults)
 
     } catch (error) {
         console.log(error);
         res.status(404).json({ message: "Page Not Found" })
-        //=> Typeof wikiError
     }
 })

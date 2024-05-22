@@ -1,11 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
+    <link rel="stylesheet" href="/style/output.css">
 </head>
+
 <body>
-    <h1 class="text-xl">Hello World</h1>
+
+    <!-- Drawer -->
+    <div class="drawer">
+        <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col">
+
+
+            <!-- Navbar -->
+            <div class="">
+                <div class="container-custom navbar justify-between">
+                    <div class="flex-none lg:hidden">
+                        <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="inline-block w-6 h-6 stroke-current">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </label>
+                    </div>
+
+
+                    <!-- Logo image component -->
+                    <a href="#" class="size-20">
+                        <img src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
+                    </a>
+
+
+
+                    <!-- Navbar menu -->
+                    <div class="flex-none hidden lg:block">
+                        <ul class="flex justify-center items-center gap-6">
+
+                            <!-- Navbar menu content here -->
+                            <li><a href="#">Today's Article</a></li>
+                            <li><a href="#">About Us</a></li>
+
+
+                        </ul>
+                    </div>
+                    <!-- Navbar menu end -->
+
+                    <!-- Search/Login block -->
+                    <div class="flex justify-center items-center gap-8">
+
+
+                        <!-- Search input -->
+                        <div class="form-control relative">
+                            <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                            <svg class="absolute right-2 top-3 stroke-current opacity-40 text-base-content" width="23"
+                                height="23" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <!-- Search input end -->
+
+
+                        <!-- Login button -->
+                        <a href="#">
+                            <button class="btn btn-outline">Login</button>
+                        </a>
+
+
+                    </div>
+                    <!-- Search/Login block end -->
+
+                </div>
+            </div>
+            <!-- Navbar end-->
+
+
+            <!-- Page content here -->
+            <div class="container-custom">
+                <h1 class="text-xl">Hello World</h1>
+
+                <section class="flex flex-col">
+                    <div class="flex justify-center items-center">
+                        <img class="w-full max-h-96" src="/assets/sign-up-image-in-homepage.webp" alt="sign-up-image">
+                        <div class="flex justify-center items-center w-full"><img class="size-36" src="/assets/arrow_marketing.png" alt="arrow"></div>
+                        <img class="w-full max-h-96" src="/assets/Features_cut.png" alt="features">
+                    </div>
+                    <div class="flex justify-center items-center w-full">
+                        <p class="text-lg font-semibold">Sign Up to access all the features of Open-Wiki: read, modify, create and save your articles. Then check them out in your Library.</p>
+                    </div>
+                </section>
+
+
+                <section class="">
+                    <div class="flex justify-center items-center">
+                        <img class="max-h-56 max-w-[580px]" src="/assets/search_image.jpg" alt="sign-up-image">
+                        <div class="flex items-center"><img class="size-36" src="/assets/arrow_marketing.png" alt="arrow"></div>
+                        <img class="max-h-96" src="/assets/Features_cut.png" alt="features">
+                    </div>
+                </section>
+
+
+                <!-- Footer component -->
+                <footer>
+
+                </footer>
+                <!-- Footer component end -->
+
+
+            </div>
+            <!-- Page content end -->
+
+
+        </div>
+        
+
+
+        <!-- Sidebar -->
+        <div class="drawer-side">
+            <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+            <ul class="menu p-4 w-80 min-h-full bg-base-200">
+
+
+                <!-- Sidebar content here -->
+                <li><a>Sidebar Item 1</a></li>
+                <li><a>Sidebar Item 2</a></li>
+
+
+            </ul>
+        </div>
+        <!-- Sidebar end -->
+
+
+    </div>
+    <!-- Drawer end -->
+
+
 </body>
+
 </html>
