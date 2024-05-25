@@ -10,7 +10,7 @@
 }
 
 
-/*Pagedone Carousel CSS*/
+/*Pagedone Carousel CSS - START*/
 
 .swiper-wrapper {
     width: 100%;
@@ -25,4 +25,27 @@
     background: #4f46e5;
 }
 
-/*Pagedone Carousel CSS*/
+/*Pagedone Carousel CSS  END*/
+
+.article-preview {
+    border: 1px solid #e0e0e0;
+    padding: 16px;
+    margin: 16px 0;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+.article-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.article-content {
+    font-size: 1em;
+    line-height: 1.5em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}

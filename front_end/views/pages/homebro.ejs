@@ -17,7 +17,7 @@
 
 
             <!-- Navbar -->
-            <div class="">
+            <div class="shadow-lg">
                 <div class="container-custom navbar justify-between">
                     <div class="flex-none lg:hidden">
                         <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
@@ -66,10 +66,17 @@
                         <!-- Search input end -->
 
 
-                        <!-- Login button -->
-                        <a href="#">
-                            <button class="btn btn-outline" onclick="logInModal.showModal()">Login</button>
-                        </a>
+                        <div class="flex items-center justify-center gap-2">
+                            <!-- Sign Up button -->
+                            <a href="#">
+                                <button class="btn btn-outline" onclick="signUpModal.showModal()">Sign Up</button>
+                            </a>
+    
+                            <!-- Login button -->
+                            <a href="#">
+                                <button class="btn btn-primary" onclick="logInModal.showModal()">Login</button>
+                            </a>
+                        </div>
 
 
                     </div>
@@ -82,35 +89,63 @@
 
             <!-- Page content here -->
             <div class="container-custom">
-                <h1 class="text-xl">Hello World</h1>
 
-                <section class="flex flex-col">
-                    <div class="flex justify-center items-center">
-                        <img class="w-full max-h-96" src="/assets/sign-up-image-in-homepage.webp" alt="sign-up-image">
-                        <div class="flex justify-center items-center w-full"><img class="size-36" src="/assets/arrow_marketing.png" alt="arrow"></div>
-                        <img class="w-full max-h-96" src="/assets/Features_cut.png" alt="features">
+
+                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                        <div class="flex flex-col items-center">
+                            <h3 class="text-2xl font-semibold">Sign Up</h3>
+                            <img class="w-full max-h-96" src="/assets/sign-up-image-in-homepage.webp" alt="sign-up-image">
+                        </div>
+                        <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                        <div class="flex flex-col items-center">
+                            <h3 class="text-2xl font-semibold">Use Features</h3>
+                            <img class="w-full max-h-96" src="/assets/Features_cut.png" alt="features">
+                        </div>
                     </div>
-                    <div class="flex justify-center items-center w-full">
-                        <p class="text-lg font-semibold">Sign Up to access all the features of Open-Wiki: read, modify, create and save your articles. Then check them out in your Library.</p>
-                    </div>
-                </section>
-
-
-                <section class="">
-                    <div class="flex justify-center items-center">
-                        <img class="max-h-56 max-w-[580px]" src="/assets/search_image.jpg" alt="sign-up-image">
-                        <div class="flex items-center"><img class="size-36" src="/assets/arrow_marketing.png" alt="arrow"></div>
-                        <img class="max-h-96" src="/assets/Features_cut.png" alt="features">
+                    <div class="flex justify-center items-center w-full mt-4">
+                        <p class="text-lg font-semibold text-center">Sign Up to access all the features of Open-Wiki:
+                            read, modify, create and save your articles. Then check them out in your Library.</p>
                     </div>
                 </section>
 
 
+                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                        <div class="flex flex-col items-center mr-4">
+                            <h3 class="text-2xl font-semibold">Search Topics</h3>
+                            <img class="max-h-56 max-w-[500px]" src="/assets/search_input.png" alt="search_image">
+                        </div>
+                        <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                        <div class="flex flex-col items-center">
+                            <h3 class="text-2xl font-semibold">Read Articles</h3>
+                            <div class="flex flex-col items-center m-8">
+                                <div class="article-preview">
+                                    <div class="article-title">Cowboy Bebop</div>
+                                    <div class="article-content">
+                                        Cowboy Bebop is a Japanese neo-noir space Western anime television series which
+                                        aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
+                                        Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
+                                        Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
+                                        Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center w-full mt-4">
+                        <p class="text-lg font-semibold text-center">Explore Open-Wiki's search feature to find articles
+                            quickly and easily.</p>
+                    </div>
+                </section>
 
+                
                 <!-- Sign Up Modal -->
                 <dialog id="signUpModal" class="modal">
                     <div class="modal-box flex flex-col gap-4">
                         <h3 class="font-bold text-lg">New User</h3>
-                        <form id="userForm" class="flex flex-col gap-4">
+                        <form id="signUp
+                        Form" class="flex flex-col gap-4">
                             <input type="text" class="input input-bordered w-full" name="firstName" placeholder="First Name">
                             <input type="text" class="input input-bordered w-full" name="lastName" placeholder="Last Name">
                             <input type="date" class="input input-bordered w-full" name="birthday">
@@ -118,10 +153,13 @@
                             <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
                             <input type="password" class="input input-bordered w-full" name="passwordConfirmation"
                                 placeholder="Confirm Password">
-                            <div class="modal-action">
-                                <button type="button" class="btn" onclick="signUpModal.close()">Chiudi</button>
-                                <button class="btn btn-primary">Sign Up</button>
-                            </div>
+                                <div class="flex justify-between items-center">
+                                    <a href="" class="text-blue-500" onclick="signUpModal.close();logInModal.showModal()"> Already signed up? Log In!</a>
+                                    <div class="modal-action">
+                                        <button type="button" class="btn" onclick="signUpModal.close()">Close</button>
+                                        <button class="btn btn-primary">Sign Up</button>
+                                    </div>
+                                </div>
                         </form>
                     </div>
                     <form method="dialog" class="modal-backdrop">
@@ -138,11 +176,12 @@
                         <form id="userForm" class="flex flex-col gap-4">
                             <input type="text" class="input input-bordered w-full" name="email" placeholder="Email">
                             <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
-                            <input type="password" class="input input-bordered w-full" name="passwordConfirmation"
-                                placeholder="Confirm Password">
-                            <div class="modal-action">
-                                <button type="button" class="btn" onclick="logInModal.close()">Chiudi</button>
-                                <button class="btn btn-primary">Log In</button>
+                            <div class="flex justify-between items-center">
+                                <a href="#" class="text-blue-500"> Forgot Password?</a>
+                                <div class="modal-action">
+                                    <button type="button" class="btn" onclick="logInModal.close()">Close</button>
+                                    <button class="btn btn-primary">Log In</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -151,7 +190,6 @@
                     </form>
                 </dialog>
                 <!-- Log In Modal end-->
-
 
 
                 <!-- Footer component -->
@@ -166,7 +204,7 @@
 
 
         </div>
-        
+
 
 
         <!-- Sidebar -->
