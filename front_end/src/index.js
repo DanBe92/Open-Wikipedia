@@ -24,9 +24,4 @@ app.get('/search', (req, res) => {
     res.render('pages/wiki-search')
 });
 
-// Test Bro
-app.get('/homebro', (req, res) => {
-    res.render('pages/homebro')
-});
-
 app.listen(3000);
