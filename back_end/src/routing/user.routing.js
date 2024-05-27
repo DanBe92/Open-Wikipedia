@@ -1,4 +1,7 @@
 import { ObjectId } from "mongodb";
+import prisma from '../../db/prisma.js';
+import { userValidation } from '../validations/users.validations.js';
+import crypto from 'crypto';
 
 export default function userRouting(app, db) {
 
@@ -8,8 +11,6 @@ export default function userRouting(app, db) {
         const usersPerPage = 2;
 
         let users = [];
-
-        // console.log(db);
 
         db.collection('user')
             .find()
@@ -41,23 +42,32 @@ export default function userRouting(app, db) {
         } else {
             res.status(400).json({ error: 'Not a valid Id' })
         }
+
     });
 
 
-    app.post("/users", (req, res) => {
+    // Create New User
+    app.post("/users", async (req, res) => {
 
-        let newUser = req.body;
+        const user = await db.collection('user').findOne({ email: req.body.email })
 
-        db.collection('user')
-            .insertOne(newUser)
-            .then(response => {
-                res.status(201).json(response);
-            })
-            .catch(() => {
-                res.status(400).json({ error: 'Failed to create new user' })
-            })
+
+        const newUser = await prisma.user.create({
+            data: {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: crypto.pbkdf2Sync(req.body.password, "salt", 10000, 100, "sha512").toString("hex")
+            }
+        })
+
+        res.status(201)
+        res.json(newUser)
+
     });
 
+
+    // Delete User
     app.delete("/users/:id", (req, res) => {
 
         if (ObjectId.isValid(req.params.id)) {

@@ -5,7 +5,6 @@ import { connectToDb } from '../db/db.js';
 import userRouting from './routing/user.routing.js'
 import wiki from 'wikipedia';
 import axios from 'axios';
-import cheerio from 'cheerio';
 import { JSDOM } from 'jsdom';
 
 const app = express();

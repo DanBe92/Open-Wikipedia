@@ -10,391 +10,387 @@
 
 <body>
 
-    <!-- Drawer -->
-    <div class="drawer">
-        <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col">
 
 
-            <!-- Navbar -->
-            <div class="shadow-lg">
-                <div class="container-custom navbar justify-between">
-                    <div class="flex-none lg:hidden">
-                        <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                class="inline-block w-6 h-6 stroke-current">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                        </label>
-                    </div>
+    <!-- Navbar -->
+    <div class="shadow-lg">
+        <div class="container-custom navbar justify-between">
+            <div class="flex-none lg:hidden">
+                <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="inline-block w-6 h-6 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </label>
+            </div>
 
 
-                    <!-- Logo image component -->
-                    <a href="#" class="size-20">
-                        <img src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
-                    </a>
+            <!-- Logo image component -->
+            <a href="#" class="size-20">
+                <img src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
+            </a>
 
 
 
-                    <!-- Navbar menu -->
-                    <div class="flex-none hidden lg:block">
-                        <ul class="flex justify-center items-center gap-6">
+            <!-- Navbar menu -->
+            <div class="flex-none hidden lg:block">
+                <ul class="flex justify-center items-center gap-6">
 
-                            <!-- Navbar menu content here -->
-                            <li><a href="#">Today's Article</a></li>
-                            <li><a href="#">About Us</a></li>
-
-
-                        </ul>
-                    </div>
-                    <!-- Navbar menu end -->
-
-                    <!-- Search/Login block -->
-                    <div class="flex justify-center items-center gap-8">
+                    <!-- Navbar menu content here -->
+                    <li><a href="#">Today's Article</a></li>
+                    <li><a href="#">About Us</a></li>
 
 
-                        <!-- Search input -->
-                        <div class="form-control relative">
-                            <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                            <svg class="absolute right-2 top-3 stroke-current opacity-40 text-base-content" width="23"
-                                height="23" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
-                        <!-- Search input end -->
+                </ul>
+            </div>
+            <!-- Navbar menu end -->
+
+            <!-- Search/Login block -->
+            <div class="flex justify-center items-center gap-8">
 
 
+                <!-- Search input -->
+                <div class="form-control relative">
+                    <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+                    <svg class="absolute right-2 top-3 stroke-current opacity-40 text-base-content" width="23"
+                        height="23" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <!-- Search input end -->
+
+                <!--
                         <div class="flex items-center justify-center gap-2">
-                            <!-- Sign Up button -->
+                            // Sign Up button
                             <a href="#">
-                                <button class="btn btn-outline" onclick="signUpModal.showModal()">Sign Up</button>
+                                <button class="btn btn-outline" onclick="openSignUp()">Sign Up</button>
                             </a>
     
-                            <!-- Login button -->
+                            // Login button
                             <a href="#">
                                 <button class="btn btn-primary" onclick="logInModal.showModal()">Login</button>
                             </a>
                         </div>
+                        -->
 
-
+                <!-- Avatar dropdown -->
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img class="" src="/assets/profile_icon.jpg" />
+                        </div>
                     </div>
-                    <!-- Search/Login block end -->
+                    <ul tabindex="0"
+                        class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                        <li><a onclick="openSignUp()">Sign Up</a></li>
+                        <li><a onclick="logInModal.showModal()">Login</a></li>
+                    </ul>
+                </div>
 
+
+            </div>
+            <!-- Search/Login block end -->
+
+        </div>
+    </div>
+    <!-- Navbar end-->
+
+
+    <!-- Page content here -->
+    <div class="container-custom">
+
+
+        <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+            <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">Sign Up</h3>
+                    <img class="w-full max-h-96" src="/assets/sign-up-image-in-homepage.webp" alt="sign-up-image">
+                </div>
+                <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">Access Features</h3>
+                    <img class="w-full max-h-[450px]" src="/assets/Features_cut.png" alt="features">
                 </div>
             </div>
-            <!-- Navbar end-->
-
-
-            <!-- Page content here -->
-            <div class="container-custom">
-
-
-                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
-                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">Sign Up</h3>
-                            <img class="w-full max-h-96" src="/assets/sign-up-image-in-homepage.webp" alt="sign-up-image">
-                        </div>
-                        <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">Access Features</h3>
-                            <img class="w-full max-h-[450px]" src="/assets/Features_cut.png" alt="features">
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center w-full mt-4">
-                        <p class="text-lg font-semibold text-center">Sign Up to access all the features of Open-Wiki:
-                            read, modify, create and save your articles. Then check them out in your Library.</p>
-                    </div>
-                </section>
-
-
-                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
-                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
-                        <div class="flex flex-col items-center mr-4">
-                            <h3 class="text-2xl font-bold">Search Topics</h3>
-                            <img class="max-h-56 max-w-[500px]" src="/assets/search_input.png" alt="search_image">
-                        </div>
-                        <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">Read Articles</h3>
-                            <div class="flex flex-col items-center m-8">
-                                <div class="article-preview">
-                                    <div class="article-title">Cowboy Bebop</div>
-                                    <div class="article-content">
-                                        Cowboy Bebop is a Japanese neo-noir space Western anime television series which
-                                        aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
-                                        Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
-                                        Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
-                                        Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center w-full mt-4">
-                        <p class="text-lg font-semibold text-center">Explore Open-Wiki's search feature to find articles
-                            quickly and easily.</p>
-                    </div>
-                </section>
-
-
-                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
-                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">Read Articles</h3>
-                            <div class="flex items-center m-8">
-                                <div class="article-preview">
-                                    <div class="article-title">Cowboy Bebop</div>
-                                    <div class="article-content">
-                                        Cowboy Bebop is a Japanese neo-noir space Western anime television series which
-                                        aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
-                                        Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
-                                        Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
-                                        Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center justify-center gap-4">
-                            <img class="w-14" src="/assets/save_icon.png" alt="save-icon">
-                            <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
-                        </div>
-                        <div class="flex flex-col items-center mr-4">
-                            <h3 class="text-2xl font-bold">Save in Library</h3>
-                            <img class="max-w-[500px]" src="/assets/my_library.png" alt="search_image">
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center w-full mt-4">
-                        <p class="text-lg font-semibold text-center">Save the articles that you like the most and check them out in your library any time you want.</p>
-                    </div>
-                </section>
-
-
-                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
-                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">From Library</h3>
-                            <div class="flex items-center m-8">
-                                <div class="article-preview">
-                                    <div class="article-title">Cowboy Bebop</div>
-                                    <div class="article-content">
-                                        Cowboy Bebop is a Japanese neo-noir space Western anime television series which
-                                        aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
-                                        Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
-                                        Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
-                                        Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center justify-center gap-4">
-                            <img class="w-14" src="/assets/edit_icon.png" alt="save-icon">
-                            <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">Modify Articles</h3>
-                            <div class="flex items-center m-8">
-                                <div class="article-preview">
-                                    <div class="article-title">Cowboy Bebop (Anime)</div>
-                                    <div class="article-content">
-                                        <span class="font-semibold">[My own review --->]</span> Cowboy Bebop is a Japanese anime television series characterized by its neo-noir and space Western genres. It was broadcast on TV Tokyo and Wowow from 1998 to 1999. The series was created and animated by the studio Sunrise. The production team, collectively known as Hajime Yatate, included director Shinichirō Watanabe, screenwriter Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi Yamane, and composer Yoko Kanno.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center w-full mt-4">
-                        <p class="text-lg font-semibold text-center">Read articles from your library and modify them as you please without any restriction.</p>
-                    </div>
-                </section>
-
-
-                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
-                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
-                        <div class="flex flex-col items-center mr-4">
-                            <h3 class="text-2xl font-bold">From Library</h3>
-                            <img class="max-w-[500px]" src="/assets/my_library.png" alt="search_image">
-                        </div>
-                        <div class="flex flex-col items-center justify-center gap-4">
-                            <img class="w-14" src="/assets/add_icon.png" alt="save-icon">
-                            <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">Create Articles</h3>
-                            <div class="flex items-center m-8">
-                                <div class="article-preview">
-                                    <div class="article-title">My Own Title</div>
-                                    <div class="article-content">
-                                        This is my personal article written and created by me. Available in my library so that i can read it any time i want to, i can modify it and delete it as i please.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center w-full mt-4">
-                        <p class="text-lg font-semibold text-center">Create your own article and save it in your library. You're the only one who can have access to it.</p>
-                    </div>
-                </section>
-
-
-
-                <!-- Sezione base test-->
-                <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
-                    <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
-                        <div class="flex flex-col justify-center items-center p-6 my-6 rounded-md">
-                            <h2 class="text-3xl font-bold mb-4">Library</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="article-preview border p-4 rounded-md shadow-md">
-                                    <div class="article-title text-xl font-semibold">Cowboy Bebop</div>
-                                    <div class="article-content">
-                                        Cowboy Bebop is a Japanese neo-noir space Western anime television series which
-                                        aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
-                                        Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
-                                        Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
-                                        Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
-                                    </div>
-                                </div>
-                                <div class="article-preview border p-4 rounded-md shadow-md">
-                                    <div class="article-title text-xl font-semibold">Neon Genesis Evangelion</div>
-                                    <div class="article-content">
-                                        Neon Genesis Evangelion is a Japanese mecha anime television series produced by
-                                        Gainax and Tatsunoko Production, directed by Hideaki Anno, and broadcast on TV Tokyo
-                                        from October 1995 to March 1996.
-                                    </div>
-                                </div>
-                                <div class="article-preview border p-4 rounded-md shadow-md">
-                                    <div class="article-title text-xl font-semibold">One Piece</div>
-                                    <div class="article-content">
-                                        One Piece is a Japanese manga series written and illustrated by Eiichiro Oda. It has
-                                        been serialized in Shueisha's shōnen manga magazine Weekly Shōnen Jump since July 1997.
-                                    </div>
-                                </div>
-                                <div class="article-preview border p-4 rounded-md shadow-md">
-                                    <div class="article-title text-xl font-semibold">Attack on Titan</div>
-                                    <div class="article-content">
-                                        Attack on Titan is a Japanese manga series written and illustrated by Hajime Isayama.
-                                        It is set in a world where humanity lives inside cities surrounded by enormous walls due to
-                                        the sudden appearance of the Titans.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center justify-center gap-4">
-                            <img class="w-14" src="/assets/add_icon.png" alt="save-icon">
-                            <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-bold">Create Articles</h3>
-                            <div class="flex items-center m-8">
-                                <div class="article-preview">
-                                    <div class="article-title">My Own Title</div>
-                                    <div class="article-content">
-                                        This is my personal article written and created by me. Available in my library so that i can read it any time i want to, i can modify it and delete it as i please.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-center items-center w-full mt-4">
-                        <p class="text-lg font-semibold text-center">Create your own article and save it in your library. You're the only one who can have access to it.</p>
-                    </div>
-                </section>
-
-
-
-
-
-
-
-
-                <!-- Sign Up Modal -->
-                <dialog id="signUpModal" class="modal">
-                    <div class="modal-box flex flex-col gap-4">
-                        <h3 class="font-bold text-lg">New User</h3>
-                        <form id="signUp
-                        Form" class="flex flex-col gap-4">
-                            <input type="text" class="input input-bordered w-full" name="firstName" placeholder="First Name">
-                            <input type="text" class="input input-bordered w-full" name="lastName" placeholder="Last Name">
-                            <input type="date" class="input input-bordered w-full" name="birthday">
-                            <input type="text" class="input input-bordered w-full" name="email" placeholder="Email">
-                            <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
-                            <input type="password" class="input input-bordered w-full" name="passwordConfirmation"
-                                placeholder="Confirm Password">
-                                <div class="flex justify-between items-center">
-                                    <a class="text-blue-500" onclick="signUpModal.close();logInModal.showModal();"> Already signed up? Log In!</a>
-                                    <div class="modal-action">
-                                        <button type="button" class="btn" onclick="signUpModal.close()">Close</button>
-                                        <button class="btn btn-primary">Sign Up</button>
-                                    </div>
-                                </div>
-                        </form>
-                    </div>
-                    <form method="dialog" class="modal-backdrop">
-                        <button>close</button>
-                    </form>
-                </dialog>
-                <!-- Sign Up Modal end -->
-
-
-                <!-- Log In Modal-->
-                <dialog id="logInModal" class="modal">
-                    <div class="modal-box flex flex-col gap-4">
-                        <h3 class="font-bold text-lg">Log In</h3>
-                        <form id="userForm" class="flex flex-col gap-4">
-                            <input type="text" class="input input-bordered w-full" name="email" placeholder="Email">
-                            <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
-                            <div class="flex justify-between items-center">
-                                <a href="#" class="text-blue-500">Forgot Password?</a>
-                                <div class="modal-action">
-                                    <button type="button" class="btn" onclick="logInModal.close()">Close</button>
-                                    <button class="btn btn-primary">Log In</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <form method="dialog" class="modal-backdrop">
-                        <button>close</button>
-                    </form>
-                </dialog>
-                <!-- Log In Modal end-->
-
-
-                <!-- Footer component -->
-                <footer>
-
-                </footer>
-                <!-- Footer component end -->
-
-
+            <div class="flex justify-center items-center w-full mt-4">
+                <p class="text-lg font-semibold text-center">Sign Up to access all the features of Open-Wiki:
+                    read, modify, create and save your articles. Then check them out in your Library.</p>
             </div>
-            <!-- Page content end -->
+        </section>
 
 
-        </div>
+        <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+            <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                <div class="flex flex-col items-center mr-4">
+                    <h3 class="text-2xl font-bold">Search Topics</h3>
+                    <img class="max-h-56 max-w-[500px]" src="/assets/search_input.png" alt="search_image">
+                </div>
+                <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">Read Articles</h3>
+                    <div class="flex flex-col items-center m-8">
+                        <div class="article-preview">
+                            <div class="article-title">Cowboy Bebop</div>
+                            <div class="article-content">
+                                Cowboy Bebop is a Japanese neo-noir space Western anime television series which
+                                aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
+                                Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
+                                Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
+                                Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center w-full mt-4">
+                <p class="text-lg font-semibold text-center">Explore Open-Wiki's search feature to find articles
+                    quickly and easily.</p>
+            </div>
+        </section>
+
+
+        <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+            <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">Read Articles</h3>
+                    <div class="flex items-center m-8">
+                        <div class="article-preview">
+                            <div class="article-title">Cowboy Bebop</div>
+                            <div class="article-content">
+                                Cowboy Bebop is a Japanese neo-noir space Western anime television series which
+                                aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
+                                Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
+                                Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
+                                Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <img class="w-14" src="/assets/save_icon.png" alt="save-icon">
+                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                </div>
+                <div class="flex flex-col items-center mr-4">
+                    <h3 class="text-2xl font-bold">Save in Library</h3>
+                    <img class="max-w-[500px]" src="/assets/my_library.png" alt="search_image">
+                </div>
+            </div>
+            <div class="flex justify-center items-center w-full mt-4">
+                <p class="text-lg font-semibold text-center">Save the articles that you like the most and check them out
+                    in your library any time you want.</p>
+            </div>
+        </section>
+
+
+        <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+            <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">From Library</h3>
+                    <div class="flex items-center m-8">
+                        <div class="article-preview">
+                            <div class="article-title">Cowboy Bebop</div>
+                            <div class="article-content">
+                                Cowboy Bebop is a Japanese neo-noir space Western anime television series which
+                                aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
+                                Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
+                                Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
+                                Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <img class="w-14" src="/assets/edit_icon.png" alt="save-icon">
+                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                </div>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">Modify Articles</h3>
+                    <div class="flex items-center m-8">
+                        <div class="article-preview">
+                            <div class="article-title">Cowboy Bebop (Anime)</div>
+                            <div class="article-content">
+                                <span class="font-semibold">[My own review --->]</span> Cowboy Bebop is a Japanese anime
+                                television series characterized by its neo-noir and space Western genres. It was
+                                broadcast on TV Tokyo and Wowow from 1998 to 1999. The series was created and animated
+                                by the studio Sunrise. The production team, collectively known as Hajime Yatate,
+                                included director Shinichirō Watanabe, screenwriter Keiko Nobumoto, character designer
+                                Toshihiro Kawamoto, mechanical designer Kimitoshi Yamane, and composer Yoko Kanno.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center w-full mt-4">
+                <p class="text-lg font-semibold text-center">Read articles from your library and modify them as you
+                    please without any restriction.</p>
+            </div>
+        </section>
+
+
+        <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+            <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                <div class="flex flex-col items-center mr-4">
+                    <h3 class="text-2xl font-bold">From Library</h3>
+                    <img class="max-w-[500px]" src="/assets/my_library.png" alt="search_image">
+                </div>
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <img class="w-14" src="/assets/add_icon.png" alt="save-icon">
+                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                </div>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">Create Articles</h3>
+                    <div class="flex items-center m-8">
+                        <div class="article-preview">
+                            <div class="article-title">My Own Title</div>
+                            <div class="article-content">
+                                This is my personal article written and created by me. Available in my library so that i
+                                can read it any time i want to, i can modify it and delete it as i please.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center w-full mt-4">
+                <p class="text-lg font-semibold text-center">Create your own article and save it in your library. You're
+                    the only one who can have access to it.</p>
+            </div>
+        </section>
 
 
 
-        <!-- Sidebar -->
-        <div class="drawer-side">
-            <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-            <ul class="menu p-4 w-80 min-h-full bg-base-200">
+        <!-- Sezione base test-->
+        <section class="flex flex-col justify-center items-center shadow-lg p-6 my-6 rounded-md min-h-[600px]">
+            <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
+                <div class="flex flex-col justify-center items-center p-6 my-6 rounded-md">
+                    <h2 class="text-3xl font-bold mb-4">Library</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="article-preview border p-4 rounded-md shadow-md">
+                            <div class="article-title text-xl font-semibold">Cowboy Bebop</div>
+                            <div class="article-content">
+                                Cowboy Bebop is a Japanese neo-noir space Western anime television series which
+                                aired on TV Tokyo and Wowow from 1998 to 1999. It was created and animated by
+                                Sunrise, led by a production team of director Shinichirō Watanabe, screenwriter
+                                Keiko Nobumoto, character designer Toshihiro Kawamoto, mechanical designer Kimitoshi
+                                Yamane, and composer Yoko Kanno, who are collectively billed as Hajime Yatate.
+                            </div>
+                        </div>
+                        <div class="article-preview border p-4 rounded-md shadow-md">
+                            <div class="article-title text-xl font-semibold">Neon Genesis Evangelion</div>
+                            <div class="article-content">
+                                Neon Genesis Evangelion is a Japanese mecha anime television series produced by
+                                Gainax and Tatsunoko Production, directed by Hideaki Anno, and broadcast on TV Tokyo
+                                from October 1995 to March 1996.
+                            </div>
+                        </div>
+                        <div class="article-preview border p-4 rounded-md shadow-md">
+                            <div class="article-title text-xl font-semibold">One Piece</div>
+                            <div class="article-content">
+                                One Piece is a Japanese manga series written and illustrated by Eiichiro Oda. It has
+                                been serialized in Shueisha's shōnen manga magazine Weekly Shōnen Jump since July 1997.
+                            </div>
+                        </div>
+                        <div class="article-preview border p-4 rounded-md shadow-md">
+                            <div class="article-title text-xl font-semibold">Attack on Titan</div>
+                            <div class="article-content">
+                                Attack on Titan is a Japanese manga series written and illustrated by Hajime Isayama.
+                                It is set in a world where humanity lives inside cities surrounded by enormous walls due
+                                to
+                                the sudden appearance of the Titans.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <img class="w-14" src="/assets/add_icon.png" alt="save-icon">
+                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                </div>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-bold">Create Articles</h3>
+                    <div class="flex items-center m-8">
+                        <div class="article-preview">
+                            <div class="article-title">My Own Title</div>
+                            <div class="article-content">
+                                This is my personal article written and created by me. Available in my library so that i
+                                can read it any time i want to, i can modify it and delete it as i please.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center w-full mt-4">
+                <p class="text-lg font-semibold text-center">Create your own article and save it in your library. You're
+                    the only one who can have access to it.</p>
+            </div>
+        </section>
 
 
-                <!-- Sidebar content here -->
-                <li><a>Sidebar Item 1</a></li>
-                <li><a>Sidebar Item 2</a></li>
+
+        <!-- Sign Up Modal -->
+        <dialog id="signUpModal" class="modal">
+            <div class="modal-box flex flex-col gap-4">
+                <h3 class="font-bold text-lg">Sign Up</h3>
+                <form id="signUpForm" class="flex flex-col gap-4">
+                    <input type="text" class="input input-bordered w-full" name="firstName" placeholder="First Name">
+                    <input type="text" class="input input-bordered w-full" name="lastName" placeholder="Last Name">
+                    <input type="text" class="input input-bordered w-full" name="email" placeholder="Email">
+                    <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
+                    <input type="password" class="input input-bordered w-full" name="passwordConfirmation"
+                        placeholder="Confirm Password">
+                    <div class="flex justify-between items-center">
+                        <a class="text-blue-500 cursor-pointer"
+                            onclick="signUpModal.close();logInModal.showModal();">Already signed up? Log In!</a>
+                        <div class="modal-action">
+                            <button type="button" class="btn" onclick="signUpModal.close()">Close</button>
+                            <button class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
+        <!-- Sign Up Modal end -->
 
 
-            </ul>
-        </div>
-        <!-- Sidebar end -->
+        <!-- Log In Modal-->
+        <dialog id="logInModal" class="modal">
+            <div class="modal-box flex flex-col gap-4">
+                <h3 class="font-bold text-lg">Log In</h3>
+                <form id="userForm" class="flex flex-col gap-4">
+                    <input type="text" class="input input-bordered w-full" name="email" placeholder="Email">
+                    <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="text-blue-500">Forgot Password?</a>
+                        <div class="modal-action">
+                            <button type="button" class="btn" onclick="logInModal.close()">Close</button>
+                            <button class="btn btn-primary">Log In</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
+        <!-- Log In Modal end-->
+
+
+        <!-- Footer component -->
+        <footer>
+
+        </footer>
+        <!-- Footer component end -->
 
 
     </div>
-    <!-- Drawer end -->
+    <!-- Page content end -->
 
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="/scripts/sign_up.js"></script>
 
 </body>
 

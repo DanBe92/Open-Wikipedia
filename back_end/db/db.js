@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 let dbConnection;
 
 export function connectToDb(callback)  {
-    MongoClient.connect('mongodb://localhost:27017/Wikipedia')
+    MongoClient.connect(process.env.DATABASE_URL)
     .then((client) => {
         dbConnection = client.db()
         // dbConnection.collection('user').find().forEach(user => console.log(user))
