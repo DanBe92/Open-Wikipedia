@@ -2,55 +2,27 @@ import { ObjectId } from "mongodb";
 import prisma from '../../db/prisma.js';
 import { userValidation } from '../validations/users.validations.js';
 import crypto from 'crypto';
+import isLoggedIn from '../middleware/isLoggedIn.js';
 
 export default function userRouting(app, db) {
 
-    app.get("/users", (req, res) => {
+    app.get("/users", isLoggedIn, async (req, res) => {
 
-        const page = req.query.page || 0;
-        const usersPerPage = 2;
+        const users = await prisma.user.findMany()
+        res.status(200).json(users);
 
-        let users = [];
-
-        db.collection('user')
-            .find()
-            .sort({ lastName: 1 })
-            .skip(page * usersPerPage)
-            .limit(usersPerPage)
-            .forEach(user => users.push(user))
-            .then(() => {
-                res.status(200).json(users);
-            })
-            .catch(() => {
-                res.status(400).json({ error: 'Failed to fetch' })
-            })
     });
 
-    app.get("/users/:id", (req, res) => {
+    app.get("/users/:id", isLoggedIn, async (req, res) => {
 
-        if (ObjectId.isValid(req.params.id)) {
-            const userId = new ObjectId(req.params.id);
-
-            db.collection('user').findOne({ _id: userId })
-                .then(user => {
-                    res.status(200).json(user)
-                })
-                .catch(() => {
-                    res.status(400).json({ error: 'Failed to fetch' })
-                })
-
-        } else {
-            res.status(400).json({ error: 'Not a valid Id' })
-        }
+        const user = await prisma.user.findUnique({ where: { id: req.user.id } })
+        res.status(200).json(user)
 
     });
 
 
     // Create New User
-    app.post("/users", async (req, res) => {
-
-        const user = await db.collection('user').findOne({ email: req.body.email })
-
+    app.post("/users", userValidation, async (req, res) => {
 
         const newUser = await prisma.user.create({
             data: {

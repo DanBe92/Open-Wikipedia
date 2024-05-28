@@ -15,8 +15,14 @@ app.get('/', (req, res) => {
 
 // Homepage
 app.get('/homepage', (req, res) => {
-    res.render('pages/homepage')
+    res.render('pages/homepage', { user: req.user})
 });
+
+
+// User Dashboard
+app.get('/users/:id', (req, res) => {
+    res.render('pages/user', {userId: req.params.id});
+})
 
 
 // Wiki-Search

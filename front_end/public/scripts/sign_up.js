@@ -97,7 +97,7 @@ signUpForm.addEventListener('submit', (e) => {
         return
     }
 
-    const url = 'http://localhost:8000/users';
+    const url = 'http://127.0.0.1:8000/users';
 
     fetch(url, {
         method: 'POST',

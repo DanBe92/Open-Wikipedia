@@ -1,11 +1,12 @@
 import validate from "validate.js";
+import prisma from "../../db/prisma.js";
 
 validate.validators.userExists = function (value, options, key, attributes) {
 
     return new Promise( async (res) => {
-        const user = await db.collection('user').findOne({ email: value, id: { not: options?.id } })
+        const user = await prisma.user.findFirst({ where: { email: value, id: { not: options?.id } } })
         if (user) {
-            res('User already signed up');
+            res('User already registered');
         } else {
             res();
         }

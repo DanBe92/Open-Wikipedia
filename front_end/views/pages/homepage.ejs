@@ -11,91 +11,8 @@
 <body>
 
 
-
     <!-- Navbar -->
-    <div class="shadow-lg">
-        <div class="container-custom navbar justify-between">
-            <div class="flex-none lg:hidden">
-                <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        class="inline-block w-6 h-6 stroke-current">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </label>
-            </div>
-
-
-            <!-- Logo image component -->
-            <a href="#" class="size-20">
-                <img src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
-            </a>
-
-
-
-            <!-- Navbar menu -->
-            <div class="flex-none hidden lg:block">
-                <ul class="flex justify-center items-center gap-6">
-
-                    <!-- Navbar menu content here -->
-                    <li><a href="#">Today's Article</a></li>
-                    <li><a href="#">About Us</a></li>
-
-
-                </ul>
-            </div>
-            <!-- Navbar menu end -->
-
-            <!-- Search/Login block -->
-            <div class="flex justify-center items-center gap-8">
-
-
-                <!-- Search input -->
-                <div class="form-control relative">
-                    <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
-                    <svg class="absolute right-2 top-3 stroke-current opacity-40 text-base-content" width="23"
-                        height="23" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-                <!-- Search input end -->
-
-                <!--
-                        <div class="flex items-center justify-center gap-2">
-                            // Sign Up button
-                            <a href="#">
-                                <button class="btn btn-outline" onclick="openSignUp()">Sign Up</button>
-                            </a>
-    
-                            // Login button
-                            <a href="#">
-                                <button class="btn btn-primary" onclick="logInModal.showModal()">Login</button>
-                            </a>
-                        </div>
-                        -->
-
-                <!-- Avatar dropdown -->
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
-                            <img class="" src="/assets/profile_icon.jpg" />
-                        </div>
-                    </div>
-                    <ul tabindex="0"
-                        class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                        <li><a onclick="openSignUp()">Sign Up</a></li>
-                        <li><a onclick="logInModal.showModal()">Login</a></li>
-                    </ul>
-                </div>
-
-
-            </div>
-            <!-- Search/Login block end -->
-
-        </div>
-    </div>
-    <!-- Navbar end-->
+    <%- include('../components/navbar'); %>
 
 
     <!-- Page content here -->
@@ -106,9 +23,10 @@
             <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold">Sign Up</h3>
-                    <img class="w-full max-h-96" src="/assets/sign-up-image-in-homepage.webp" alt="sign-up-image">
+                    <img class="w-full max-h-96" src="/assets/sign_up.jpg" alt="sign-up-image">
                 </div>
-                <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                <!-- <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow"> -->
+                <img class="max-h-16 max-w-16" src="/assets/confirm_icon.jpg" alt="arrow">
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold">Access Features</h3>
                     <img class="w-full max-h-[450px]" src="/assets/Features_cut.png" alt="features">
@@ -125,9 +43,13 @@
             <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
                 <div class="flex flex-col items-center mr-4">
                     <h3 class="text-2xl font-bold">Search Topics</h3>
-                    <img class="max-h-56 max-w-[500px]" src="/assets/search_input.png" alt="search_image">
+                    <img class="max-h-56 max-w-[500px] w-full" src="/assets/search_input.png" alt="search_image">
                 </div>
-                <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                <svg class="stroke-current text-base-content max-h-16 max-w-16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                <!-- <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow"> -->
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold">Read Articles</h3>
                     <div class="flex flex-col items-center m-8">
@@ -169,12 +91,12 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center justify-center gap-4">
-                    <img class="w-14" src="/assets/save_icon.png" alt="save-icon">
-                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                    <img class="max-h-16 max-w-16" src="/assets/save_icon.png" alt="save-icon">
+                    <!-- <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow"> -->
                 </div>
                 <div class="flex flex-col items-center mr-4">
                     <h3 class="text-2xl font-bold">Save in Library</h3>
-                    <img class="max-w-[500px]" src="/assets/my_library.png" alt="search_image">
+                    <img class="max-w-[500px] w-full" src="/assets/my_library.png" alt="search_image">
                 </div>
             </div>
             <div class="flex justify-center items-center w-full mt-4">
@@ -202,8 +124,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center justify-center gap-4">
-                    <img class="w-14" src="/assets/edit_icon.png" alt="save-icon">
-                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                    <img class="max-h-16 max-w-16" src="/assets/edit_icon.png" alt="save-icon">
+                    <!-- <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow"> -->
                 </div>
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold">Modify Articles</h3>
@@ -233,11 +155,11 @@
             <div class="flex flex-col md:flex-row w-full justify-center items-center gap-10">
                 <div class="flex flex-col items-center mr-4">
                     <h3 class="text-2xl font-bold">From Library</h3>
-                    <img class="max-w-[500px]" src="/assets/my_library.png" alt="search_image">
+                    <img class="max-w-[500px] w-full" src="/assets/my_library.png" alt="search_image">
                 </div>
                 <div class="flex flex-col items-center justify-center gap-4">
-                    <img class="w-14" src="/assets/add_icon.png" alt="save-icon">
-                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                    <img class="max-h-16 max-w-16" src="/assets/add_icon.png" alt="save-icon">
+                    <!-- <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow"> -->
                 </div>
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold">Create Articles</h3>
@@ -303,8 +225,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center justify-center gap-4">
-                    <img class="w-14" src="/assets/add_icon.png" alt="save-icon">
-                    <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow">
+                    <img class="max-h-16 max-w-16" src="/assets/add_icon.png" alt="save-icon">
+                    <!-- <img class="h-24 md:-rotate-90" src="/assets/arrow-drawn-black.png" alt="arrow"> -->
                 </div>
                 <div class="flex flex-col items-center">
                     <h3 class="text-2xl font-bold">Create Articles</h3>
@@ -325,8 +247,7 @@
             </div>
         </section>
 
-
-
+        
         <!-- Sign Up Modal -->
         <dialog id="signUpModal" class="modal">
             <div class="modal-box flex flex-col gap-4">
@@ -339,7 +260,7 @@
                     <input type="password" class="input input-bordered w-full" name="passwordConfirmation"
                         placeholder="Confirm Password">
                     <div class="flex justify-between items-center">
-                        <a class="text-blue-500 cursor-pointer"
+                        <a class="text-blue-500 cursor-pointer w-28 md:w-full"
                             onclick="signUpModal.close();logInModal.showModal();">Already signed up? Log In!</a>
                         <div class="modal-action">
                             <button type="button" class="btn" onclick="signUpModal.close()">Close</button>
@@ -359,7 +280,7 @@
         <dialog id="logInModal" class="modal">
             <div class="modal-box flex flex-col gap-4">
                 <h3 class="font-bold text-lg">Log In</h3>
-                <form id="userForm" class="flex flex-col gap-4">
+                <form id="loginForm" class="flex flex-col gap-4">
                     <input type="text" class="input input-bordered w-full" name="email" placeholder="Email">
                     <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
                     <div class="flex justify-between items-center">
@@ -389,8 +310,26 @@
     <!-- Page content end -->
 
 
+    <script>
+        const user = JSON.parse(localStorage.getItem("user"));
+        
+
+        if (user) {
+            document.querySelector('#signUpList').style.display = "none";
+            document.querySelector('#loginList').style.display = "none";
+            document.querySelector('#profileList').style.display = "block";
+            document.querySelector('#logoutList').style.display = "block";
+        } else {
+            document.querySelector('#signUpList').style.display = "block";
+            document.querySelector('#loginList').style.display = "block";
+            document.querySelector('#profileList').style.display = "none";
+            document.querySelector('#logoutList').style.display = "none";
+        }
+
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="/scripts/sign_up.js"></script>
+    <script src="/scripts/login.js"></script>
 
 </body>
 

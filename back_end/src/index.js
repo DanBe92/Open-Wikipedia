@@ -3,6 +3,7 @@ import 'dotenv/config';
 import cors from 'cors';
 import { connectToDb } from '../db/db.js';
 import userRouting from './routing/user.routing.js'
+import authRouting from './routing/auth.routing.js'
 import wiki from 'wikipedia';
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
@@ -19,29 +20,17 @@ app.use(cors({
     origin: process.env.FRONT_END_PORT_URL3000
 }));
 
-connectToDb((db, err) => {
-    if (!err) {
-        app.listen(process.env.BACK_END_LISTEN_PORT, () => {
-            console.log(`App listening on Port ${process.env.BACK_END_LISTEN_PORT}`);
-        });
-        userRouting(app, db);
-    } else {
-        console.log('Could not connect to db');
-    }
-});
-
-
-
 app.get('/', (req, res) => {
     res.send('Hello World');
 });
-
-
 
 app.get('/homepageCarousel', (req, res) => {
     res.send('FetchedCarouselHere');
 });
 
+
+userRouting(app);
+authRouting(app);
 
 
 app.post('/testSummary', async (req, res) => {
@@ -137,3 +126,7 @@ app.get('/testScraping', async (req, res) => {
         return null
     }
 })
+
+app.listen(process.env.BACK_END_LISTEN_PORT, () => {
+    console.log(`App Listening at Port ${process.env.BACK_END_LISTEN_PORT}`);
+});
