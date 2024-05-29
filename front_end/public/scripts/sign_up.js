@@ -89,11 +89,11 @@ signUpForm.addEventListener('submit', (e) => {
     const password = passwordTag.value;
     const passwordConfirmation = passwordConfirmationTag.value;
 
-    const validation = formValidation(firstName, lastName, email, password, passwordConfirmation)
+    const signUpValidation = formValidation(firstName, lastName, email, password, passwordConfirmation)
 
 
-    if (validation) {
-        checkValidation(validation);
+    if (signUpValidation) {
+        checkValidation(signUpValidation);
         return
     }
 

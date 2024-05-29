@@ -1,19 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Detail</title>
+    <link rel="stylesheet" href="/style/output.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
+
 <body>
-    
-    <span id="user"></span>
 
-    <script>
-        const user = JSON.parse(localStorage.getItem("user"))
-        console.log("User", user);
-    </script>
-    <script src="/scripts/user.js"></script>
+    <!-- Navbar -->
+    <%- include('../components/navbar'); %>
+
+        <!-- First Drawer Part -->
+        <%- include('../layouts/before_page_content'); %>
+
+            <!-- Page content here -->
+
+            <div class="m-5 h-full w-full">
+                <h1 class="text-2xl font-semibold"><span id="user"></span>'s Profile</h1>
+
+                <!-- Swiper Da modificare -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                        <div class="swiper-slide">Slide 4</div>
+                        <div class="swiper-slide">Slide 5</div>
+                        <div class="swiper-slide">Slide 6</div>
+                        <div class="swiper-slide">Slide 7</div>
+                        <div class="swiper-slide">Slide 8</div>
+                        <div class="swiper-slide">Slide 9</div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+
+            </div>
+
+
+
+
+            <!-- Last Drawer Part -->
+            <%- include('../layouts/after_page_content'); %>
+
+
+
+                <script src="/scripts/user.js"></script>
+                <script src="/scripts/check_avatar_login.js"></script>
+                
+                <!-- Swiper JS -->
+                <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+                <!-- Initialize Swiper -->
+                <script>
+                    var swiper = new Swiper(".mySwiper", {
+                        navigation: {
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev",
+                        },
+                    });
+                </script>
 </body>
-</html>
 
+</html>

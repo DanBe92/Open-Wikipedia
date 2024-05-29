@@ -62,9 +62,7 @@ app.post('/testCompleteArticle', async (req, res) => {
 
 
             console.log(searchResults);
-
             res.status(200).json(searchResults)
-
             return
         }
 

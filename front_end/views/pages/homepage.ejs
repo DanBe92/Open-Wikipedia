@@ -251,7 +251,7 @@
         <!-- Sign Up Modal -->
         <dialog id="signUpModal" class="modal">
             <div class="modal-box flex flex-col gap-4">
-                <h3 class="font-bold text-lg">Sign Up</h3>
+                <h3 class="font-bold text-3xl">Sign Up</h3>
                 <form id="signUpForm" class="flex flex-col gap-4">
                     <input type="text" class="input input-bordered w-full" name="firstName" placeholder="First Name">
                     <input type="text" class="input input-bordered w-full" name="lastName" placeholder="Last Name">
@@ -279,7 +279,7 @@
         <!-- Log In Modal-->
         <dialog id="logInModal" class="modal">
             <div class="modal-box flex flex-col gap-4">
-                <h3 class="font-bold text-lg">Log In</h3>
+                <h3 class="font-bold text-2xl">Log In</h3>
                 <form id="loginForm" class="flex flex-col gap-4">
                     <input type="text" class="input input-bordered w-full" name="email" placeholder="Email">
                     <input type="password" class="input input-bordered w-full" name="password" placeholder="Password">
@@ -312,24 +312,12 @@
 
     <script>
         const user = JSON.parse(localStorage.getItem("user"));
-        
-
-        if (user) {
-            document.querySelector('#signUpList').style.display = "none";
-            document.querySelector('#loginList').style.display = "none";
-            document.querySelector('#profileList').style.display = "block";
-            document.querySelector('#logoutList').style.display = "block";
-        } else {
-            document.querySelector('#signUpList').style.display = "block";
-            document.querySelector('#loginList').style.display = "block";
-            document.querySelector('#profileList').style.display = "none";
-            document.querySelector('#logoutList').style.display = "none";
-        }
-
     </script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="/scripts/sign_up.js"></script>
     <script src="/scripts/login.js"></script>
+    <script src="/scripts/check_avatar_login.js"></script>
 
 </body>
 
