@@ -18,25 +18,28 @@
         <%- include('../layouts/before_page_content'); %>
 
             <!-- Page content here -->
-
             <div class="m-5 h-full w-full">
+
                 <h1 class="text-2xl font-semibold"><span id="user"></span>'s Profile</h1>
 
-                <!-- Swiper Da modificare -->
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">Slide 1</div>
-                        <div class="swiper-slide">Slide 2</div>
-                        <div class="swiper-slide">Slide 3</div>
-                        <div class="swiper-slide">Slide 4</div>
-                        <div class="swiper-slide">Slide 5</div>
-                        <div class="swiper-slide">Slide 6</div>
-                        <div class="swiper-slide">Slide 7</div>
-                        <div class="swiper-slide">Slide 8</div>
-                        <div class="swiper-slide">Slide 9</div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+
+                <div class="flex justify-between items-center gap-4">
+                    <!-- Swiper content here -->
+                    <!-- <%- include('../components/swiper_user_dashboard_component'); %> -->
+
+                        <div class="card h-full w-full bg-base-100 shadow-xl">
+                            <div class="card-body items-center md:items-start">
+                                <h2 class="card-title">Library</h2>
+                                <p>Read Articles</p>
+                            </div>
+                        </div>
+
+                        <div class="card h-full w-full bg-base-100 shadow-xl">
+                            <div class="card-body items-center md:items-start">
+                                <input class="card-title" placeholder="Title">
+                                <button class="btn btn-ghost">Write Article</button>
+                            </div>
+                        </div>
                 </div>
 
             </div>
@@ -51,13 +54,17 @@
 
                 <script src="/scripts/user.js"></script>
                 <script src="/scripts/check_avatar_login.js"></script>
-                
+
                 <!-- Swiper JS -->
                 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
                 <!-- Initialize Swiper -->
                 <script>
                     var swiper = new Swiper(".mySwiper", {
+                        pagination: {
+                            el: ".swiper-pagination",
+                            type: "progressbar",
+                        },
                         navigation: {
                             nextEl: ".swiper-button-next",
                             prevEl: ".swiper-button-prev",

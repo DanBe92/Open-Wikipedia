@@ -9,8 +9,8 @@ export default function authRouting(app) {
 
         const user = await prisma.user.findFirst({
             where: {
-                email: req.body.email,
-                password: crypto.pbkdf2Sync(req.body.password, "salt", 10000, 100, "sha512").toString("hex")
+                email: req.body.loginEmail,
+                password: crypto.pbkdf2Sync(req.body.loginPassword, "salt", 10000, 100, "sha512").toString("hex")
             }
         });
 
@@ -22,7 +22,7 @@ export default function authRouting(app) {
         const token = jwt.sign(user,
             process.env.JWT_SECRET_KEY,
             {
-                expiresIn: '2 minutes'
+                expiresIn: '1 hour'
             }
         );
 

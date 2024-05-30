@@ -113,5 +113,44 @@ document.querySelector('#daily-button')
 
         console.log(dailyData);
 
-    })
+    });
+
+
+
+document.querySelector('#scraping-button')
+    .addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const search = document.querySelector('#scraping-input').value;
+
+        const response = await fetch('http://127.0.0.1:8000/testScraping', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                search
+            })
+        })
+        const data = await response.json();
+        console.log(data);
+
+        const div = document.createElement('div');
+
+        const img = document.createElement('img');
+        img.src = data.urlImage;
+        div.appendChild(img);
+
+        const h1 = document.createElement('h1');
+        h1.textContent = data.title;
+        div.appendChild(h1);
+
+        data.paragraphs.forEach(paragraph => {
+            const p = document.createElement('p');
+            p.textContent = paragraph;
+            div.appendChild(p);
+        })
+
+        body.appendChild(div)
+    });
 

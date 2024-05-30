@@ -10,22 +10,24 @@
 }
 
 
-/*Pagedone Carousel CSS - START*/
-
-.swiper-wrapper {
+.swiper {
     width: 100%;
-    height: max-content !important;
-    padding-bottom: 64px !important;
-    -webkit-transition-timing-function: linear !important;
-    transition-timing-function: linear !important;
-    position: relative;
+    height: 100%;
 }
 
-.swiper-pagination-bullet {
-    background: #4f46e5;
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/*Pagedone Carousel CSS  END*/
+.swiper-slide div {
+    display: block;
+    object-fit: cover;
+}
 
 .article-preview {
     border: 1px solid #e0e0e0;
@@ -36,11 +38,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
 }
+
 .article-title {
     font-size: 1.5em;
     font-weight: 600;
     margin-bottom: 8px;
 }
+
 .article-content {
     font-size: 1em;
     line-height: 1.5em;

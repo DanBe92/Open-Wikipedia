@@ -1,16 +1,16 @@
 
 const loginForm = document.querySelector('#loginForm');
 
-function loginFormValidation(email, password) {
+function loginFormValidation(loginEmail, loginPassword) {
 
     const validation = validate({
-        email,
-        password
+        loginEmail,
+        loginPassword
     }, {
-        email: {
+        loginEmail: {
             email: true
         },
-        password: {
+        loginPassword: {
             length: { minimum: 8 }
         }
     })
@@ -24,25 +24,22 @@ loginForm.addEventListener('submit', async (e) => {
 
     cleanErrors();
 
-    const email = e.target.children[0].value;
-    const password = e.target.children[1].value;
+    const loginEmail = e.target.children[0].value;
+    const loginPassword = e.target.children[1].value;
 
-    const loginValidation = loginFormValidation(email, password)
+    const loginValidation = loginFormValidation(loginEmail, loginPassword);
+
+    console.log(loginValidation);
 
     if (loginValidation) {
-        const el = document.querySelector('input[name=password]')
-        el.style.border = '1px solid red';
-        const span = document.createElement('span');
-        span.classList.add('inputError');
-        span.style.color = 'red';
-        el.parentNode.insertBefore(span, el.nextSibling);
+        checkValidation(loginValidation);
         return
     }
 
     const res = await fetch('http://localhost:8000/login', {
         body: JSON.stringify({
-            email,
-            password
+            loginEmail,
+            loginPassword
         }),
         method: 'POST',
         headers: {
@@ -52,14 +49,7 @@ loginForm.addEventListener('submit', async (e) => {
 
     if (res.status !== 200) {
         const error = await res.json();
-        console.log("Error:", error);
-
-        const el = document.querySelector('input[name=password]')
-        const span = document.createElement('span');
-        span.textContent = error.message;
-        span.classList.add('inputError');
-        span.style.color = 'red';
-        el.parentNode.insertBefore(span, el.nextSibling);
+        checkValidation(error);
         return
     }
 

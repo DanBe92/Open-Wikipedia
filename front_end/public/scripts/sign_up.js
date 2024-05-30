@@ -1,9 +1,9 @@
 const signUpModal = document.querySelector('#signUpModal');
 
-function openSignUp() {
-    signUpModal.showModal();
+function openModals(modalName, modalForm) {
+    modalName.showModal();
     cleanErrors();
-    signUpForm.reset();
+    modalForm.reset();
 };
 
 
