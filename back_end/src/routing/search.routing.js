@@ -69,12 +69,6 @@ export default function searchRouting(app) {
             const url = `https://en.wikipedia.org/wiki/${title}`;
             const data = await axios.get(url);
 
-            // console.log(data.data);
-
-            // const $ = cheerio.load(data.data);
-            // const firstParagraph = $('#mw-content-text p').first().text();
-            // console.log(firstParagraph);
-
             const dom = new JSDOM(data.data);
 
             const domTitle = dom.window.document.querySelector('#firstHeading').textContent;

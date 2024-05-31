@@ -15,13 +15,18 @@ app.get('/', (req, res) => {
 
 // Homepage
 app.get('/homepage', (req, res) => {
-    res.render('pages/homepage', { user: req.user})
+    res.render('pages/homepage')
 });
 
 
 // User Dashboard
 app.get('/users/:id', (req, res) => {
     res.render('pages/user', {userId: req.params.id});
+})
+
+// User Library
+app.get('/users/:id/library', (req, res) => {
+    res.render('pages/library');
 })
 
 

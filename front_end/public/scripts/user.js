@@ -1,6 +1,4 @@
 
-const user = JSON.parse(localStorage.getItem("user"));
-
 (async () => {
     const response = await fetch(`http://localhost:8000/users/${user.id}`,
         {
@@ -19,9 +17,14 @@ const user = JSON.parse(localStorage.getItem("user"));
     } else {
         const user = await response.json();
         console.log("Login Effettuato");
-        console.log("Data", user);
-        const span = document.querySelector('#user')
-        span.textContent = user.firstName;
+        const span1 = document.querySelector('#user')
+        span1.textContent = user.firstName;
+        const span2 = document.querySelector('#firstName')
+        span2.textContent = user.firstName;
+        const span3 = document.querySelector('#lastName')
+        span3.textContent = user.lastName;
+        const span4 = document.querySelector('#email')
+        span4.textContent = user.email;
     }
 
     

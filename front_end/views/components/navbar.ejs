@@ -1,21 +1,25 @@
 
 <div class="shadow-lg">
-    <div class="container-custom navbar justify-between">
-        <div class="flex-none lg:hidden">
-            <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    class="inline-block w-6 h-6 stroke-current">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </label>
+    <div class="max-w-[1680px] w-full m-auto navbar justify-between">
+
+        <div class="flex justify-center items-center gap-8">
+            <!-- Hamburger svg -->
+            <div class="flex-none md:hidden">
+                <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="inline-block w-6 h-6 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                        </path>
+                    </svg>
+                </label>
+            </div>
+    
+    
+            <!-- Logo image component -->
+            <a href="/homepage" class="w-20 md:w-72">
+                <img class="size-20" src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
+            </a>
         </div>
-
-
-        <!-- Logo image component -->
-        <a href="/homepage" class="size-20">
-            <img src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
-        </a>
 
 
 
@@ -26,6 +30,8 @@
                 <!-- Navbar menu content here -->
                 <li><a href="#">Today's Article</a></li>
                 <li><a href="#">About Us</a></li>
+                <li><a href="#">Today's Article</a></li>
+                <li><a href="#">About Us</a></li>
 
 
             </ul>
@@ -34,7 +40,7 @@
 
 
         <!-- Search/Login block -->
-        <div class="flex justify-center items-center gap-8">
+        <div class="flex justify-center w-full md:w-auto items-center gap-8">
 
             <!-- Search input -->
             <%- include('./search_input_component'); %>

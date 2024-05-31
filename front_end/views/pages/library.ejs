@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="/style/output.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include('../components/navbar'); %>
+
+        <!-- First Drawer Part -->
+        <%- include('../layouts/before_page_content'); %>
+
+            <!-- Page content here -->
+            <div class="m-5 h-full w-full">
+            </div>
+
+
+
+            <!-- Last Drawer Part -->
+            <%- include('../layouts/after_page_content'); %>
+
+                <script src="/scripts/check_avatar_login.js"></script>
+
+</body>
+
+</html>

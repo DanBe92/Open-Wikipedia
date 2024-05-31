@@ -20,26 +20,46 @@
             <!-- Page content here -->
             <div class="m-5 h-full w-full">
 
-                <h1 class="text-2xl font-semibold"><span id="user"></span>'s Profile</h1>
+                <h1 class="text-5xl font-semibold"><span id="user"></span>'s Dashboard</h1>
 
 
-                <div class="flex justify-between items-center gap-4">
-                    <!-- Swiper content here -->
-                    <!-- <%- include('../components/swiper_user_dashboard_component'); %> -->
+                <div class="flex flex-col justify-between items-center gap-4">
 
-                        <div class="card h-full w-full bg-base-100 shadow-xl">
+                    <div class="flex w-full items-center gap-6">
+                        <div class="card h-full w-full bg-base-100 shadow-xl p-3">
                             <div class="card-body items-center md:items-start">
-                                <h2 class="card-title">Library</h2>
-                                <p>Read Articles</p>
+                                <h2 class="card-title font-bold">Library</h2>
+                                <button class="btn btn-ghost"
+                                    onclick="window.location.href=`/users/${user.id}/library`">Access Library</button>
                             </div>
                         </div>
 
-                        <div class="card h-full w-full bg-base-100 shadow-xl">
+                        <div class="card h-full w-full bg-base-100 shadow-xl p-3">
                             <div class="card-body items-center md:items-start">
-                                <input class="card-title" placeholder="Title">
-                                <button class="btn btn-ghost">Write Article</button>
+                                <input class="card-title w-full" placeholder="Title">
+                                <button class="btn btn-ghost">Write new Article</button>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="card h-full w-full bg-base-100 shadow-xl p-3">
+                        <div class="card-body items-center md:items-start gap-4">
+                            <h2 class="card-title font-bold">Profile</h2>
+                            <div class="flex w-full justify-between items-center">
+                                <div>
+                                    <p class="font-semibold">First Name:</p><span id="firstName"></span>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Last Name:</p><span id="lastName"></span>
+                                </div>
+                                <div class="hidden md:block">
+                                    <p class="font-semibold">Email:</p><span id="email"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>

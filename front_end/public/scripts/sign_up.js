@@ -42,11 +42,9 @@ function formValidation(firstName, lastName, email, password, passwordConfirmati
         passwordConfirmation
     }, {
         firstName: {
-            presence: { allowEmpty: false },
             length: { minimum: 3 }
         },
         lastName: {
-            presence: { allowEmpty: false },
             length: { minimum: 3 }
         },
         email: {
@@ -97,7 +95,7 @@ signUpForm.addEventListener('submit', (e) => {
         return
     }
 
-    const url = 'http://127.0.0.1:8000/users';
+    const url = 'http://localhost:8000/users';
 
     fetch(url, {
         method: 'POST',

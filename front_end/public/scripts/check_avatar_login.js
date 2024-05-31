@@ -1,3 +1,4 @@
+const user = JSON.parse(localStorage.getItem("user"));
 
 if (user) {
     document.querySelector('#signUpList').style.display = "none";
