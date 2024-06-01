@@ -1,43 +1,38 @@
-
 <div class="shadow-lg">
-    <div class="container-custom navbar justify-between m-auto">
+    <div class="max-w-[1680px] w-full m-auto navbar justify-between">
+
+        <!-- Hamburger svg -->
         <div class="flex-none md:hidden">
             <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     class="inline-block w-6 h-6 stroke-current">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
                     </path>
                 </svg>
             </label>
         </div>
 
-
         <!-- Logo image component -->
-        <a href="/homepage" class="size-20">
-            <img src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
-        </a>
-
-
+        <div class="w-20">
+            <img class="size-20 cursor-pointer" onclick="window.location.href='/homepage'"
+                src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
+        </div>
 
         <!-- Navbar menu -->
         <div class="flex-none hidden md:block">
-            <ul class="flex justify-center items-center gap-6 text-lg font-[500]">
+            <ul class="flex justify-center items-center gap-6 rounded-lg text-lg font-[500]">
 
                 <!-- Navbar menu content here -->
-                <li><a href="/about_us" class="link link-hover">About Us</a></li>
-                <li><a href="/contact_us" class="link link-hover">Contacts</a></li>
-                <li><a href="/terms" class="link link-hover">Terms and conditions</a></li>
-                <li><a href="/privacy" class="link link-hover">Privacy</a></li>
-                <li><a href="/cookies" class="link link-hover">Cookies</a></li>
-
+                <li><a href="/homepage">Homepage</a></li>
+                <li><a class="cursor-pointer" onclick="window.location.href = `/users/${user.id}`">Profile</a></li>
+                <li><a class="cursor-pointer" onclick="window.location.href = `/users/${user.id}/library`">Library</a></li>
+                <li><a class="cursor-pointer" onclick="window.location.href = `/users/${user.id}/new_article`">New Article</a></li>
 
             </ul>
         </div>
         <!-- Navbar menu end -->
 
 
-        <!-- Login block -->
         <!-- Avatar dropdown -->
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
@@ -45,8 +40,7 @@
                     <img class="" src="/assets/profile_icon.jpg" />
                 </div>
             </div>
-            <ul tabindex="0"
-                class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+            <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
 
                 <!-- If User not Logged In -->
                 <li id="signUpList"><a onclick="openModals(signUpModal, signUpForm)">Sign Up</a></li>
@@ -57,7 +51,9 @@
                 <li id="logoutList"><a onclick="localStorage.clear(); window.location.href='/homepage'">Logout</a></li>
             </ul>
         </div>
-        <!-- Login block end -->
+
+
 
     </div>
 </div>
+<!-- Navbar end-->

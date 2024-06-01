@@ -4,15 +4,15 @@ import { JSDOM } from 'jsdom';
 
 export default function searchRouting(app) {
 
-    app.post('/testSummary', async (req, res) => {
+    app.post('/getPageUrl', async (req, res) => {
         try {
             const searchQuery = req.body.searchQuery;
             // const language = await wiki.setLang('it');
 
             const page = await wiki.page(searchQuery);
 
-            const summary = await page.summary();
-            res.status(200).json(summary)
+            // const summary = await page.summary();
+            res.status(200).json(page.fullurl)
 
         } catch (error) {
             console.log(error);
@@ -20,32 +20,32 @@ export default function searchRouting(app) {
         }
     })
 
-    app.post('/testCompleteArticle', async (req, res) => {
+    app.post('/firstSearch', async (req, res) => {
         try {
-            const searchQuery = req.body.searchQuery ? req.body.searchQuery : req.body.suggestion;
-
-            console.log("Search Query", searchQuery);
+            const searchQuery = req.body.firstSearch ? req.body.firstSearch : req.body.suggestion;
 
             if (searchQuery !== undefined) {
 
                 // const language = await wiki.setLang('it');
-                const searchResults = await wiki.search(searchQuery, { limit: 5 });
+                const searchResults = await wiki.search(searchQuery, {suggestion: true, limit: 5})
+                
+                const resultIds = searchResults.results.map(result => {
+                    return {'title': result.title, 'pageId': result.pageid};
+                });
 
-
-                console.log(searchResults);
-                res.status(200).json(searchResults)
+                res.status(200).json(resultIds)
                 return
             }
 
             res.status(404).json({ message: "Page Not Found" })
 
         } catch (error) {
-            console.log(error);
+            console.log("Error:", error);
             res.status(404).json({ message: "Page Not Found" })
         }
     })
 
-    app.get('/testDailyArticle', async (req, res) => {
+    app.get('/daily_article', async (req, res) => {
         try {
 
             // const language = await wiki.setLang('it');
@@ -62,11 +62,13 @@ export default function searchRouting(app) {
         }
     })
 
-    app.post('/testScraping', async (req, res) => {
+    app.post('/getFullArticle', async (req, res) => {
         try {
 
-            const title = req.body.search
-            const url = `https://en.wikipedia.org/wiki/${title}`;
+            // const title = req.body.search
+            // const url = `https://en.wikipedia.org/wiki/${title}`;
+            
+            const url = req.body.articleUrl
             const data = await axios.get(url);
 
             const dom = new JSDOM(data.data);
@@ -98,8 +100,9 @@ export default function searchRouting(app) {
             })
 
         } catch (error) {
-            console.log(`Errore nel recuperare l'articolo: ${error}`);
-            return null
+            console.log(`Error: ${error}`);
+            res.status(404).json({message : "Article not Found"})
+            
         }
     })
 

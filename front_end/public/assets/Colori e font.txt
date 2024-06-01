@@ -1,0 +1,4 @@
+Colore Primario: #e3d3b2
+Colore secondario: #8b6c4f
+
+Font: Caveat

@@ -1,0 +1,35 @@
+
+<!-- <div class="p-14 fixed bottom-0 w-full"> -->
+<div class="container-custom shadow-xl rounded-2xl">
+    <footer class="footer justify-center md:justify-normal">
+        <aside>
+            <a href="/homepage" class="size-24">
+                <img src="/assets/Logo-Open-Wiki.png" alt="Logo-Open-Wiki">
+            </a>
+            <p class="font-semibold">Open-Wiki Ltd.</p>
+        </aside>
+        <nav>
+            <h6 class="footer-title opacity-100">Services</h6>
+
+            <!-- If User not Logged In -->
+            <a id="footerSignUp" class="cursor-pointer hover:underline" onclick="openModals(signUpModal, signUpForm)">Sign Up</a>
+            <a id="footerLogin" class="cursor-pointer hover:underline" onclick="openModals(logInModal, loginForm)">Login</a>
+
+            <!-- If User Logged In -->
+            <a id="footerProfile" class="cursor-pointer hover:underline" onclick="window.location.href = `/users/${user.id}`">Profile</a>
+            <a id="footerLogout" class="cursor-pointer hover:underline" onclick="localStorage.clear(); window.location.href='/homepage'">Logout</a>
+
+        </nav>
+        <nav>
+            <h6 class="footer-title opacity-100">Company</h6>
+            <a href="/about_us" class="link link-hover">About Us</a>
+            <a href="/contact_us" class="link link-hover">Contacts</a>
+        </nav>
+        <nav>
+            <h6 class="footer-title opacity-100">Rights</h6>
+            <a href="/terms" class="link link-hover">Terms and conditions</a>
+            <a href="/privacy" class="link link-hover">Privacy</a>
+            <a href="/cookies" class="link link-hover">Cookies</a>
+        </nav>
+    </footer>
+</div>

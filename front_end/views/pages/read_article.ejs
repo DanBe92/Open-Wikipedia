@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>Read Article</title>
     <link rel="stylesheet" href="/style/output.css">
 
 </head>
@@ -18,7 +18,11 @@
         <%- include('../layouts/before_page_content'); %>
 
             <!-- Page content here -->
-            <div class="w-full h-full p-4">
+            <div id="articleContent" class="w-full h-full p-4 flex flex-col gap-8 shadow-xl">
+                <div class="flex justify-between items-center">
+                    <img id="articleImg">
+                    <img class="cursor-pointer max-h-16 max-w-16 md:mr-10" src="/assets/save_icon.png" alt="save-icon">
+                </div>
             </div>
 
 
@@ -30,6 +34,7 @@
             <!-- Last Drawer Part -->
             <%- include('../layouts/after_page_content'); %>
 
+            <script src="/scripts/read_article.js"></script>
 </body>
 
 </html>

@@ -29,8 +29,6 @@ loginForm.addEventListener('submit', async (e) => {
 
     const loginValidation = loginFormValidation(loginEmail, loginPassword);
 
-    console.log(loginValidation);
-
     if (loginValidation) {
         checkValidation(loginValidation);
         return

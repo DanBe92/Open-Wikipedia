@@ -12,16 +12,15 @@
 <body>
 
     <!-- Navbar -->
-    <%- include('../components/navbar'); %>
+    <%- include('../components/navbar_user_logged'); %>
 
         <!-- First Drawer Part -->
         <%- include('../layouts/before_page_content'); %>
 
             <!-- Page content here -->
-            <div class="m-5 h-full w-full">
+            <div class="w-full h-full p-4">
 
                 <h1 class="text-5xl font-semibold"><span id="user"></span>'s Dashboard</h1>
-
 
                 <div class="flex flex-col justify-between items-center gap-4">
 
@@ -59,38 +58,37 @@
                         </div>
                     </div>
 
-
                 </div>
 
             </div>
+            
+            <!-- Footer component -->
+            <%- include('../components/footer_user_logged'); %>
+                <!-- Footer component end -->
+
+                <!-- Last Drawer Part -->
+                <%- include('../layouts/after_page_content'); %>
 
 
 
+                    <script src="/scripts/user.js"></script>
 
-            <!-- Last Drawer Part -->
-            <%- include('../layouts/after_page_content'); %>
+                    <!-- Swiper JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-
-
-                <script src="/scripts/user.js"></script>
-                <script src="/scripts/check_avatar_login.js"></script>
-
-                <!-- Swiper JS -->
-                <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-                <!-- Initialize Swiper -->
-                <script>
-                    var swiper = new Swiper(".mySwiper", {
-                        pagination: {
-                            el: ".swiper-pagination",
-                            type: "progressbar",
-                        },
-                        navigation: {
-                            nextEl: ".swiper-button-next",
-                            prevEl: ".swiper-button-prev",
-                        },
-                    });
-                </script>
+                    <!-- Initialize Swiper -->
+                    <script>
+                        var swiper = new Swiper(".mySwiper", {
+                            pagination: {
+                                el: ".swiper-pagination",
+                                type: "progressbar",
+                            },
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                            },
+                        });
+                    </script>
 </body>
 
 </html>

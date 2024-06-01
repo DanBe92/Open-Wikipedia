@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies</title>
+    <link rel="stylesheet" href="/style/output.css">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <%- include('../components/navbar'); %>
+
+    <div class="container-custom">
+        <div class="flex flex-col justify-center items-center gap-4">
+            <div class="card w-96 md:w-full bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-2xl font-bold">Cookie Settings</h2>
+                    <p>This site uses cookies to ensure the best possible experience. Cookies are small text files that are stored on your device when you visit a website. They are used to improve your browsing experience and to collect information about site usage.</p>
+                    <p>Some cookies are essential for the site's operation, while others help us improve the site by providing us with information about user interactions with the site itself.</p>
+                    <p>You can accept or reject the use of cookies through your browser settings. However, if you decide to disable cookies, you may not be able to use some functionalities of the site.</p>
+                    <p>For more information on the cookies we use and your options for managing cookies, please refer to our Cookie Policy.</p>
+                    <p>If you have any questions or concerns about our cookie policy, please do not hesitate to contact us. Thank you for your understanding and continued support.</p>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- Footer component -->
+    <%- include('../components/footer'); %>
+    <!-- Footer component end -->
+    <script src="/scripts/check_avatar_login.js"></script>
+</body>
+</html>

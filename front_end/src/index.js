@@ -1,4 +1,7 @@
 import express from 'express';
+import extraPagesRouting from './routing/extra_pages.routing.js';
+import userPagesRouting from './routing/user_pages.routing.js';
+import articlePagesRouting from './routing/article_pages.routing.js';
 
 const app = express();
 
@@ -19,20 +22,14 @@ app.get('/homepage', (req, res) => {
 });
 
 
-// User Dashboard
-app.get('/users/:id', (req, res) => {
-    res.render('pages/user', {userId: req.params.id});
-})
-
-// User Library
-app.get('/users/:id/library', (req, res) => {
-    res.render('pages/library');
-})
-
-
 // Wiki-Search
 app.get('/search', (req, res) => {
     res.render('pages/wiki-search')
 });
+
+
+extraPagesRouting(app);
+userPagesRouting(app);
+articlePagesRouting(app);
 
 app.listen(3000);
