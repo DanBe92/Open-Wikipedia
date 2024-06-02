@@ -11,21 +11,25 @@
 
 .swiper {
     width: 100%;
-    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-position: center;
+    background-size: cover;
+    width: 200px !important;
+    
 }
 
-.swiper-slide div {
+.swiper-slide img {
     display: block;
-    object-fit: cover;
+    width: 100%;
+    max-height: 300px !important;
+}
+
+.swiper-pagination {
+    position: static !important;
 }
 
 .article-preview {

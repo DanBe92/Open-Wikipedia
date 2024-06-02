@@ -4,14 +4,16 @@ import cors from 'cors';
 import userRouting from './routing/user.routing.js'
 import authRouting from './routing/auth.routing.js'
 import searchRouting from './routing/search.routing.js'
+import articleRouting from './routing/article.routing.js'
 
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 
 app.use(express.urlencoded({
-    extended: true
+    extended: true,
+    limit: '50mb'
 }));
 
 app.use(cors({
@@ -30,6 +32,7 @@ app.get('/homepageCarousel', (req, res) => {
 userRouting(app);
 authRouting(app);
 searchRouting(app);
+articleRouting(app);
 
 
 

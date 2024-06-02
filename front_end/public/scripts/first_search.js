@@ -2,7 +2,7 @@
 const searchDiv = document.querySelector('#searchDiv');
 
 function clearSearch() {
-    localStorage.removeItem('articleSearchDetails')
+    localStorage.removeItem('articleUrl')
     document.querySelector('#searchResults')?.remove();
     document.querySelector('#emptySearch')?.remove();
 }
@@ -31,6 +31,7 @@ document.querySelector('#searchButton')
         const response = await fetch('http://127.0.0.1:8000/firstSearch', {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -57,6 +58,7 @@ document.querySelector('#searchButton')
                     const response = await fetch('http://localhost:8000/getPageUrl', {
                         method: 'POST',
                         headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
@@ -67,7 +69,7 @@ document.querySelector('#searchButton')
                     const articleUrl = await response.json();
 
                     localStorage.setItem('articleUrl', JSON.stringify(articleUrl))
-                    window.location.href = `/users/${user.id}/read_article/${article.pageId}`
+                    window.location.href = `/users/${user.id}/read_article`
                 }
 
                 li.appendChild(h2);

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="/style/output.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -19,16 +19,28 @@
 
             <!-- Page content here -->
             <div class="w-full h-full p-4">
+
+                <!-- Swiper Compomemt -->
+                <div class="swiper mySwiper my-10">
+                    <div class="swiper-wrapper">
+                    </div>
+                    <div class="swiper-pagination static"></div>
+                </div>
+
             </div>
-
-
 
             <!-- Footer component -->
             <%- include('../components/footer_user_logged'); %>
                 <!-- Footer component end -->
 
-            <!-- Last Drawer Part -->
-            <%- include('../layouts/after_page_content'); %>
+                <!-- Last Drawer Part -->
+                <%- include('../layouts/after_page_content'); %>
+
+                    <!-- Swiper JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+                    <!-- Initialize Swiper -->
+                    <script src="/scripts/swiper_library.js"></script>
 
 </body>
 

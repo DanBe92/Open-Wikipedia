@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Detail</title>
     <link rel="stylesheet" href="/style/output.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 </head>
 
 <body>
@@ -54,6 +54,7 @@
                                 <div class="hidden md:block">
                                     <p class="font-semibold">Email:</p><span id="email"></span>
                                 </div>
+                                <button id="deleteUserButton" class="btn btn-error">Delete Account</button>
                             </div>
                         </div>
                     </div>
@@ -72,23 +73,9 @@
 
 
                     <script src="/scripts/user.js"></script>
+                    <script src="/scripts/delete_user_button.js"></script>
 
-                    <!-- Swiper JS -->
-                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-                    <!-- Initialize Swiper -->
-                    <script>
-                        var swiper = new Swiper(".mySwiper", {
-                            pagination: {
-                                el: ".swiper-pagination",
-                                type: "progressbar",
-                            },
-                            navigation: {
-                                nextEl: ".swiper-button-next",
-                                prevEl: ".swiper-button-prev",
-                            },
-                        });
-                    </script>
+                    
 </body>
 
 </html>

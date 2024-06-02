@@ -8,8 +8,8 @@ export default function articlePagesRouting(app) {
     })
 
    // Read Article
-   app.get('/users/:id/read_article/:pageId', (req, res) => {
-    res.render('pages/read_article', { userId: req.params.id, pageId: req.params.pageId });
+   app.get('/users/:id/read_article', (req, res) => {
+    res.render('pages/read_article', { userId: req.params.id });
 })
 
 }

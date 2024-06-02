@@ -18,23 +18,31 @@
         <%- include('../layouts/before_page_content'); %>
 
             <!-- Page content here -->
-            <div id="articleContent" class="w-full h-full p-4 flex flex-col gap-8 shadow-xl">
-                <div class="flex justify-between items-center">
-                    <img id="articleImg">
-                    <img class="cursor-pointer max-h-16 max-w-16 md:mr-10" src="/assets/save_icon.png" alt="save-icon">
+            <div class="w-full h-full p-4 flex flex-col shadow-xl">
+                <div class="flex justify-center items-center gap-4 my-4">
+                    <p id="infoLimitedArticle" class="text-lg font-semibold">This reading is limited to 5 paragraphs.</p>
+                    <p id="infoFullArticle" class="text-lg font-semibold hidden">You're reading the full article.</p>
+                    <button id="readFullArticle" class="btn btn-outline">Read Full Article</button>
+                    <button id="readLimitedArticle" class="btn btn-outline hidden">Read first 5 Paragraphs</button>
+                </div>
+
+                <div id="articleContent" class="flex flex-col gap-8">
+                    <div class="flex justify-between items-center">
+                        <img id="articleImg">
+                        <img id="saveIcon" onclick="saveArticle()" class="cursor-pointer max-h-16 max-w-16 md:mr-10" src="/assets/save_icon.png" alt="save-icon">
+                    </div>
                 </div>
             </div>
-
-
 
             <!-- Footer component -->
             <%- include('../components/footer_user_logged'); %>
                 <!-- Footer component end -->
 
-            <!-- Last Drawer Part -->
-            <%- include('../layouts/after_page_content'); %>
+                <!-- Last Drawer Part -->
+                <%- include('../layouts/after_page_content'); %>
 
-            <script src="/scripts/read_article.js"></script>
+                    <script src="/scripts/read_article.js"></script>
+                    <script src="/scripts/save_article.js"></script>
 </body>
 
 </html>

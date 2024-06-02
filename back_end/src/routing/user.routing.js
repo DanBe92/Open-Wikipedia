@@ -6,6 +6,7 @@ import isLoggedIn from '../middleware/isLoggedIn.js';
 
 export default function userRouting(app, db) {
 
+    // Get Users
     app.get("/users", isLoggedIn, async (req, res) => {
 
         const users = await prisma.user.findMany()
@@ -13,6 +14,8 @@ export default function userRouting(app, db) {
 
     });
 
+
+    // Get User By Id
     app.get("/users/:id", isLoggedIn, async (req, res) => {
 
         const user = await prisma.user.findUnique({ where: { id: req.user.id } })
@@ -40,42 +43,54 @@ export default function userRouting(app, db) {
 
 
     // Delete User
-    app.delete("/users/:id", (req, res) => {
+    app.delete("/users/:id", isLoggedIn, async (req, res) => {
 
-        if (ObjectId.isValid(req.params.id)) {
-            const userId = new ObjectId(req.params.id);
+        const userId = req.params.id
+        const user = await prisma.user.findUnique({ where: { id: userId } });
 
-            db.collection('user')
-                .deleteOne({ _id: userId })
-                .then(result => {
-                    res.status(200).json(result)
-                })
-                .catch(() => {
-                    res.status(400).json({ error: 'Failed to delete the user' })
-                })
+        if (user) {
+            const deleteUser = await prisma.user.delete({
+                where: {
+                    id: userId,
+                },
+            })
 
-        } else {
-            res.status(400).json({ error: 'Not a valid Id' })
-        }
-    });
-
-    app.patch("/users/:id", (req, res) => {
-        const updates = req.body;
-
-        if (ObjectId.isValid(req.params.id)) {
-            const userId = new ObjectId(req.params.id);
-
-            db.collection('user')
-                .updateOne({ _id: userId }, { $set: updates })
-                .then(result => {
-                    res.status(200).json(result)
-                })
-                .catch(() => {
-                    res.status(400).json({ error: 'Failed to update the user' })
-                })
+            res.json(user)
 
         } else {
-            res.status(400).json({ error: 'Not a valid Id' })
+            res.status(404).json({ message: 'User Not Found' })
         }
+    })
+
+
+    // Update User
+    app.put('/users/:id', isLoggedIn, userValidation, async (req, res) => {
+
+        const userId = req.params.id
+
+        let user = await prisma.user.findUnique({ where: { id: userId } })
+
+        if (user) {
+            user = await prisma.user.update({
+                where: {
+                    id: userId
+                },
+                data: {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    birthday: moment(req.body.birthday, 'YYYY-MM-DD').toISOString(),
+                    email: req.body.email,
+                    password: req.body.password,
+                }
+            });
+
+            res.status(201)
+            res.json(user)
+        } else {
+            res.status(404).json({ message: 'User Not Found' })
+        }
+
+        return
+
     });
 }

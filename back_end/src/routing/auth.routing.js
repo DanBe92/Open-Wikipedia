@@ -15,7 +15,7 @@ export default function authRouting(app) {
         });
 
         if (!user) {
-            res.status(422).json({ message: 'Wrong Credentials' })
+            res.status(422).json({ loginEmail: [], loginPassword: ['Wrong Credentials'] } )
             return
         }
 

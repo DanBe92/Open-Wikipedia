@@ -1,91 +1,116 @@
 
-const articleUrl = JSON.parse(localStorage.getItem('articleUrl'));
-console.log(articleUrl);
+function clearArticleData(flag = null) {
+
+    document.querySelector('#textContent')?.remove();
+
+    if (!flag) {
+        document.querySelector('#infoLimitedArticle').style.display = "none";
+        document.querySelector('#readFullArticle').style.display = "none";
+        document.querySelector('#infoFullArticle').style.display = "block";
+        document.querySelector('#readLimitedArticle').style.display = "block";
+    } else {
+        document.querySelector('#infoLimitedArticle').style.display = "block";
+        document.querySelector('#readFullArticle').style.display = "block";
+        document.querySelector('#infoFullArticle').style.display = "none";
+        document.querySelector('#readLimitedArticle').style.display = "none";
+    }
+}
 
 
-(async () => {
+function createArticle(articleData) {
 
-    const response = await fetch('http://127.0.0.1:8000/getFullArticle', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            articleUrl
-        })
+    const articleContent = document.querySelector('#articleContent');
+
+    const div = document.createElement('div');
+    div.id = 'textContent';
+    div.className = 'flex';
+    div.classList.add('flex-col', 'gap-8');
+
+    const img = document.querySelector('#articleImg');
+    img.src = articleData.urlImage;
+    img.alt = articleData.title + "-img";
+
+    const h1 = document.createElement('h1');
+    h1.textContent = articleData.title;
+    h1.className = 'text-3xl';
+    h1.classList.add('font-bold');
+
+    div.appendChild(h1);
+
+    articleData.paragraphs.forEach(par => {
+        const p = document.createElement('p');
+        p.textContent = par;
+        div.appendChild(p);
     })
 
-    if (response.status !== 200) {
-        const searchDiv = document.querySelector('#searchDiv');
-        const div = document.createElement('div');
-        div.id = "searchResults"
-        div.className = 'menu';
-        div.classList.add('flex', 'flex-col', 'justify-start', 'gap-4', 'text-lg', 'font-semibold')
-        const h2 = document.createElement('h2');
-        h2.textContent = "Couldn't load the article";
-        h2.style.color = 'red';
-        div.appendChild(h2);
-        searchDiv.appendChild(div);
-    } else {
-        const articleData = await response.json();
-        console.log(articleData);
+    articleContent.appendChild(div);
+}
 
-        const div = document.querySelector('#articleContent');
 
-        const img = document.querySelector('#articleImg');
-        img.src = articleData.urlImage;
-        img.alt = "article-img";
+async function showArticle(limit = 6, clearFlag = 1) {
 
-        const h1 = document.createElement('h1');
-        h1.textContent = articleData.title;
-        h1.className = 'text-xl';
-        h1.classList.add('font-bold');
-        div.appendChild(h1);
+    clearArticleData(clearFlag);
 
-        articleData.paragraphs.forEach(par => {
-            const p = document.createElement('p');
-            p.textContent = par;
-            div.appendChild(p);
+    const articleUrl = JSON.parse(localStorage.getItem('articleUrl'));
+
+    if (articleUrl) {
+        const response = await fetch('http://127.0.0.1:8000/getFullArticle', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                articleUrl,
+                limit
+            })
         })
+
+        if (response.status !== 200) {
+            const searchDiv = document.querySelector('#searchDiv');
+
+            const div = document.createElement('div');
+            div.id = "searchResults"
+            div.className = 'menu';
+            div.classList.add('flex', 'flex-col', 'justify-start', 'gap-4', 'text-lg', 'font-semibold')
+
+            const h2 = document.createElement('h2');
+            h2.textContent = "Couldn't load the article";
+            h2.style.color = 'red';
+
+            div.appendChild(h2);
+            searchDiv.appendChild(div);
+        } else {
+            const articleData = await response.json();
+            localStorage.removeItem('fullArticleData');
+            localStorage.setItem('fullArticleData', JSON.stringify(articleData));
+            createArticle(articleData);
+        }
+
+        return
+
+    } else {
+        document.querySelector('#infoLimitedArticle').style.display = "none";
+        document.querySelector('#readFullArticle').style.display = "none";
+        document.querySelector('#infoFullArticle').style.display = "none";
+        document.querySelector('#readLimitedArticle').style.display = "none";
+        const articleData = JSON.parse(localStorage.getItem('fullArticleData'));
+        createArticle(articleData);
     }
-})();
+};
 
 
-// Scraping
+showArticle();
 
-// document.querySelector('#scraping-button')
-//     .addEventListener('click', async (e) => {
-//         e.preventDefault();
 
-//         const search = document.querySelector('#scraping-input').value;
+document.querySelector('#readFullArticle')
+    .addEventListener('click', (e) => {
+        e.preventDefault();
+        showArticle(999, null);
+    });
 
-//         const response = await fetch('http://127.0.0.1:8000/scraping', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({
-//                 search
-//             })
-//         })
-//         const data = await response.json();
-//         console.log(data);
-
-//         const div = document.createElement('div');
-
-//         const img = document.createElement('img');
-//         img.src = data.urlImage;
-//         div.appendChild(img);
-
-//         const h1 = document.createElement('h1');
-//         h1.textContent = data.title;
-//         div.appendChild(h1);
-
-//         data.paragraphs.forEach(paragraph => {
-//             const p = document.createElement('p');
-//             p.textContent = paragraph;
-//             div.appendChild(p);
-//         })
-
-//         body.appendChild(div)
-//     });
+document.querySelector('#readLimitedArticle')
+    .addEventListener('click', (e) => {
+        e.preventDefault();
+        showArticle();
+    });
