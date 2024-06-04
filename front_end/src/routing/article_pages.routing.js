@@ -3,13 +3,18 @@
 export default function articlePagesRouting(app) {
 
     // New Article
-    app.get('/users/:id/new_article', (req, res) => {
-        res.render('pages/new_article', { userId: req.params.id });
+    app.get('/users/new_article', (req, res) => {
+        res.render('pages/new_article');
     })
 
-   // Read Article
-   app.get('/users/:id/read_article', (req, res) => {
-    res.render('pages/read_article', { userId: req.params.id });
-})
+    // Read Article
+    app.get('/users/read_article', (req, res) => {
+        res.render('pages/read_article');
+    })
+
+    // Read Article
+    app.get('/users/edit_article', (req, res) => {
+        res.render('pages/edit_article');
+    })
 
 }

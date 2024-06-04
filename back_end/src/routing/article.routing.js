@@ -31,27 +31,18 @@ export default function articleRouting(app, db) {
     });
 
 
-    // // Get User By Id
-    // app.get("/users/:id", isLoggedIn, async (req, res) => {
-
-    //     const user = await prisma.user.findUnique({ where: { id: req.user.id } })
-    //     res.status(200).json(user)
-
-    // });
-
-
     // Create New Article
     app.post("/articles", isLoggedIn, async (req, res) => {
 
         try {
             const userId = req.user.id;
+            const pageId = +req.body.pageId;
 
             const newArticle = await prisma.article.create({
                 data: {
-                    title: req.body.articleData.title,
-                    paragraphs: req.body.articleData.paragraphs,
-                    urlImage: req.body.articleData.urlImage,
-                    userId: userId
+                    userId: userId,
+                    pageId: pageId,
+                    articleData: req.body.articleData
                 }
             })
 
@@ -63,7 +54,7 @@ export default function articleRouting(app, db) {
             console.log("Error: ", error);
             if (error instanceof Prisma.PrismaClientKnownRequestError) {
                 if (error.code === 'P2002') {
-                    res.status(400).json({ message: "This Article is already saved in library" })
+                    res.status(400).json({ message: "This Article is already saved in your library" })
                     return
                 }
             }

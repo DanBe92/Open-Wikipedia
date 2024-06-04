@@ -112,11 +112,11 @@ signUpForm.addEventListener('submit', (e) => {
     })
         .then(res => res.json())
         .then(data => {
-            console.log("Data", data);
             if (data.isError) {
                 checkValidation(data.error);
                 return
             }
+            alert("Account Created. You can now log in!")
             signUpModal.close();
         })
 

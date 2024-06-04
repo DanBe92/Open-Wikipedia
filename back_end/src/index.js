@@ -17,7 +17,8 @@ app.use(express.urlencoded({
 }));
 
 app.use(cors({
-    origin: process.env.FRONT_END_PORT_URL3000
+    // origin: process.env.FRONT_END_PORT_URL3000
+    origin: '*'
 }));
 
 app.get('/', (req, res) => {

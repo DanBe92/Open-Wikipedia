@@ -1,8 +1,8 @@
 // User Delete
 
-function userDelete(id) {
+function userDelete() {
 
-    fetch(`http://localhost:8000/users/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost:8000/users`, { method: 'DELETE' })
         .then(res => res.json())
         .then(user => {
             if (user.message) {
@@ -25,6 +25,6 @@ tdDeleteUserButton.addEventListener('click', (event) => {
     if (confirm("This action will DELETE your account. Confirm to proceed.") == false) {
         event.preventDefault();
     } else {
-        userDelete(event.target.name)
+        userDelete()
     }
 })

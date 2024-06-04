@@ -1,22 +1,13 @@
-import { ObjectId } from "mongodb";
 import prisma from '../../db/prisma.js';
 import { userValidation } from '../validations/users.validations.js';
 import crypto from 'crypto';
 import isLoggedIn from '../middleware/isLoggedIn.js';
 
-export default function userRouting(app, db) {
-
-    // Get Users
-    app.get("/users", isLoggedIn, async (req, res) => {
-
-        const users = await prisma.user.findMany()
-        res.status(200).json(users);
-
-    });
+export default function userRouting(app) {
 
 
     // Get User By Id
-    app.get("/users/:id", isLoggedIn, async (req, res) => {
+    app.get("/users", isLoggedIn, async (req, res) => {
 
         const user = await prisma.user.findUnique({ where: { id: req.user.id } })
         res.status(200).json(user)
@@ -43,9 +34,9 @@ export default function userRouting(app, db) {
 
 
     // Delete User
-    app.delete("/users/:id", isLoggedIn, async (req, res) => {
+    app.delete("/users", isLoggedIn, async (req, res) => {
 
-        const userId = req.params.id
+        const userId = req.user.id
         const user = await prisma.user.findUnique({ where: { id: userId } });
 
         if (user) {
@@ -63,10 +54,10 @@ export default function userRouting(app, db) {
     })
 
 
-    // Update User
-    app.put('/users/:id', isLoggedIn, userValidation, async (req, res) => {
+    // Update User Da modificare per Mongo Db
+    app.put('/users', isLoggedIn, userValidation, async (req, res) => {
 
-        const userId = req.params.id
+        const userId = req.user.id
 
         let user = await prisma.user.findUnique({ where: { id: userId } })
 

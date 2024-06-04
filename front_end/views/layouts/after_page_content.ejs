@@ -1,5 +1,5 @@
 </div> 
-<div class="drawer-side w-full mb-5 rounded-b-2xl">
+<div class="drawer-side w-full mb-5 rounded-b-2xl z-10">
   <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> 
   <ul class="menu p-4 w-4/5 md:w-80 min-h-full bg-base-200 text-base-content">
     <!-- Sidebar content here -->
@@ -8,10 +8,10 @@
 
     <!-- Sidebar list here -->
     <li><a href="/homepage">Homepage</a></li>
-    <li><a onclick="window.location.href = `/users/${user.id}/library`">Library</a></li>
-    <li><a onclick="window.location.href = `/users/${user.id}/new_article`">Create New Article</a></li>
-    <li><a onclick="window.location.href = `/users/${user.id}`">Today's Article</a></li>
-    <li><a onclick="window.location.href = `/users/${user.id}`">Profile</a></li>
+    <li><a onclick="window.location.href = `/users/library`">Library</a></li>
+    <li><a onclick="window.location.href = `/users/new_article`">Create New Article</a></li>
+    <li><a onclick="window.location.href = `/users`">Today's Article</a></li>
+    <li><a onclick="window.location.href = `/users`">Profile</a></li>
   </ul>
 </div>
 </div>

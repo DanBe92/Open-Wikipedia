@@ -2,7 +2,7 @@
 let user = JSON.parse(localStorage.getItem('user'));
 
 (async () => {
-    const response = await fetch(`http://localhost:8000/users/${user.id}`,
+    const response = await fetch(`http://localhost:8000/users`,
         {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -12,7 +12,7 @@ let user = JSON.parse(localStorage.getItem('user'));
     )
 
     if (response.status !== 200) {
-        alert('Session Expired')
+        alert('Session Expired') // Sostituire con un modale magari
         localStorage.clear();
         window.location.href = '/homepage';
     } else {

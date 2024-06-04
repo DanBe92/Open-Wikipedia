@@ -23,10 +23,9 @@ model user {
 }
 
 model article {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  title      String   @unique
-  paragraphs String[]
-  urlImage   String
-  userId     String   @db.ObjectId
-  user       user     @relation(fields: [userId], references: [id])
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  articleData Json
+  pageId      Int    @unique
+  userId      String @db.ObjectId
+  user        user   @relation(fields: [userId], references: [id])
 }

@@ -29,8 +29,6 @@ loginForm.addEventListener('submit', async (e) => {
 
     const loginValidation = loginFormValidation(loginEmail, loginPassword);
 
-    console.log("Login Validation", loginValidation);
-
     if (loginValidation) {
         checkValidation(loginValidation);
         return
@@ -58,5 +56,5 @@ loginForm.addEventListener('submit', async (e) => {
     localStorage.setItem('user', JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
 
-    window.location.href = `/users/${data.user.id}`
+    window.location.href = `/users`
 })

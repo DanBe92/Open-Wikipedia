@@ -24,9 +24,11 @@
 
                 <!-- Navbar menu content here -->
                 <li><a href="/homepage">Homepage</a></li>
-                <li><a class="cursor-pointer" onclick="window.location.href = `/users/${user.id}`">Profile</a></li>
-                <li><a class="cursor-pointer" onclick="window.location.href = `/users/${user.id}/library`">Library</a></li>
-                <li><a class="cursor-pointer" onclick="window.location.href = `/users/${user.id}/new_article`">New Article</a></li>
+                <li><a class="cursor-pointer" onclick="window.location.href = `/users`">Profile</a></li>
+                <li><a class="cursor-pointer" onclick="window.location.href = `/users/library`">Library</a></li>
+                <li><a class="cursor-pointer" onclick="window.location.href = `/users/new_article`">New Article</a></li>
+
+                <!-- Da inserire link corretti per utente non loggato -->
 
             </ul>
         </div>
@@ -47,7 +49,7 @@
                 <li id="loginList"><a onclick="openModals(logInModal, loginForm)">Login</a></li>
 
                 <!-- If User Logged In -->
-                <li id="profileList"><a onclick="window.location.href = `/users/${user.id}`">Profile</a></li>
+                <li id="profileList"><a onclick="window.location.href = `/users`">Profile</a></li>
                 <li id="logoutList"><a onclick="localStorage.clear(); window.location.href='/homepage'">Logout</a></li>
             </ul>
         </div>

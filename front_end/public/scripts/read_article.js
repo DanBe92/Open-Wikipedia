@@ -1,4 +1,7 @@
 
+let articleData;
+
+
 function clearArticleData(flag = null) {
 
     document.querySelector('#textContent')?.remove();
@@ -54,7 +57,7 @@ async function showArticle(limit = 6, clearFlag = 1) {
     const articleUrl = JSON.parse(localStorage.getItem('articleUrl'));
 
     if (articleUrl) {
-        const response = await fetch('http://127.0.0.1:8000/getFullArticle', {
+        const response = await fetch('http://localhost:8000/getFullArticle', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -81,10 +84,9 @@ async function showArticle(limit = 6, clearFlag = 1) {
             div.appendChild(h2);
             searchDiv.appendChild(div);
         } else {
-            const articleData = await response.json();
-            localStorage.removeItem('fullArticleData');
-            localStorage.setItem('fullArticleData', JSON.stringify(articleData));
+            articleData = await response.json();
             createArticle(articleData);
+            localStorage.setItem('fullArticleData', JSON.stringify(articleData));
         }
 
         return
@@ -94,14 +96,14 @@ async function showArticle(limit = 6, clearFlag = 1) {
         document.querySelector('#readFullArticle').style.display = "none";
         document.querySelector('#infoFullArticle').style.display = "none";
         document.querySelector('#readLimitedArticle').style.display = "none";
-        const articleData = JSON.parse(localStorage.getItem('fullArticleData'));
+
+        articleData = JSON.parse(localStorage.getItem('fullArticleData'));
+
         createArticle(articleData);
     }
 };
 
-
 showArticle();
-
 
 document.querySelector('#readFullArticle')
     .addEventListener('click', (e) => {

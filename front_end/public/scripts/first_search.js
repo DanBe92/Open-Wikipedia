@@ -28,7 +28,7 @@ document.querySelector('#searchButton')
             return
         }
 
-        const response = await fetch('http://127.0.0.1:8000/firstSearch', {
+        const response = await fetch('http://localhost:8000/firstSearch', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -55,6 +55,7 @@ document.querySelector('#searchButton')
                 const li = document.createElement('li');
 
                 li.onclick = async () => {
+
                     const response = await fetch('http://localhost:8000/getPageUrl', {
                         method: 'POST',
                         headers: {
@@ -62,14 +63,24 @@ document.querySelector('#searchButton')
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            'searchQuery': article.pageId
+                            'pageId': article.pageId
                         })
                     });
 
-                    const articleUrl = await response.json();
+                    const articleUrlandCheckDouble = await response.json();
 
-                    localStorage.setItem('articleUrl', JSON.stringify(articleUrl))
-                    window.location.href = `/users/${user.id}/read_article`
+                    if (articleUrlandCheckDouble.isArticle) {
+
+                        if (confirm("This article is already saved in your library. Do you want to search for it again? Confirm to proceed.") == false) {
+                            return
+                        }
+
+                    }
+
+                    localStorage.setItem('articleUrl', JSON.stringify(articleUrlandCheckDouble.articleUrl))
+                    localStorage.setItem('pageId', JSON.stringify(article.pageId))
+                    window.location.href = `/users/read_article`
+
                 }
 
                 li.appendChild(h2);

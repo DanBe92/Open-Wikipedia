@@ -2,6 +2,7 @@ import wiki from 'wikipedia';
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
 import isLoggedIn from '../middleware/isLoggedIn.js';
+import prisma from '../../db/prisma.js';
 
 export default function searchRouting(app) {
 
@@ -37,12 +38,19 @@ export default function searchRouting(app) {
     // Response is the url of the selected article
     app.post('/getPageUrl', isLoggedIn, async (req, res) => {
         try {
-            const searchQuery = req.body.searchQuery;
+            let isArticle;
+            const pageId = req.body.pageId;
             // const language = await wiki.setLang('it');
 
-            const page = await wiki.page(searchQuery);
+            const page = await wiki.page(pageId);
 
-            res.status(200).json(page.fullurl)
+            const article = await prisma.article.findUnique({ where: { pageId: pageId } })
+
+            if (article) {
+                isArticle = true
+            }
+
+            res.status(200).json({ 'isArticle': isArticle, 'articleUrl': page.fullurl } )
 
         } catch (error) {
             console.log(error);
@@ -58,6 +66,7 @@ export default function searchRouting(app) {
 
             const url = req.body.articleUrl
             const limit = req.body.limit
+            
             const data = await axios.get(url);
 
             const dom = new JSDOM(data.data);
@@ -75,7 +84,7 @@ export default function searchRouting(app) {
  
                 const paragraph = p.textContent.replace(/\[(.+?)\]/g, "")
 
-                if (paragraph !== '\n' || paragraph !== '\n\n') {
+                if (paragraph !== '\n') {
                     paragraphs.push(paragraph)
                 }
 
