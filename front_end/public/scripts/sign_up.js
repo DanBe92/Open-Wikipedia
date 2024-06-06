@@ -27,6 +27,7 @@ function setError(el, messages) {
 function cleanErrors() {
     document.querySelectorAll('.inputError').forEach((element) => {
         element.previousElementSibling.style.border = ''
+        element.style.border = ''
         element.remove();
     })
 };

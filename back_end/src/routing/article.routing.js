@@ -142,27 +142,32 @@ export default function articleRouting(app, db) {
     });
 
 
-    //     // Delete Article
-    //     app.delete("/users/:id", isLoggedIn, async (req, res) => {
+    // Delete Article
+    app.delete("/article", isLoggedIn, async (req, res) => {
 
-    //         const userId = req.params.id
-    //         const user = await prisma.user.findUnique({ where: { id: userId } });
+        try {
 
-    //         if (user) {
-    //             const deleteUser = await prisma.user.delete({
-    //                 where: {
-    //                     id: userId,
-    //                 },
-    //             })
+        const userId = req.user.id
+        const pageId = +req.body.pageId;
 
-    //             res.json(user)
+        const deletedArticle = await prisma.article.delete({
+            where: {
+                pageIdUserId: {
+                    pageId: pageId,
+                    userId: userId
+                }
+            }
+        })
 
-    //         } else {
-    //             res.status(404).json({ message: 'User Not Found' })
-    //         }
-    //     })
+        res.json(deletedArticle)
 
+    } catch (err) {
 
+        console.log(err);
+        res.status(404).json( { message: 'Article not Found' } )
 
+    }
+
+    })
 
 }

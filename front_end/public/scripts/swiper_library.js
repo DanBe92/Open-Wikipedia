@@ -40,7 +40,7 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
             'Content-Type': 'application/json'
         }
     });
-
+    
     const articlesObjectList = await response.json();
 
     if (articlesObjectList.length > 0) {
@@ -69,6 +69,7 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
             swiperSlideDiv.appendChild(slideImg);
 
             swiperWrapper.appendChild(swiperSlideDiv);
+            
         });
 
         const swiper = new Swiper(".mySwiper", {
@@ -86,7 +87,7 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
             pagination: {
                 el: ".swiper-pagination",
             },
-            loop: true,
+            loop: articlesObjectList.length >= 7 ? true : false,
         });
 
         return
@@ -102,7 +103,7 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
 
     const p = document.createElement('p');
     p.className = 'text-2xl font-semibold';
-    p.textContent = "Search for an article and save it, then come here to find it.";
+    p.textContent = "Search for an article and save it, then come here to read it.";
     div.appendChild(p);
 
     document.querySelector('.swiper').className = 'hidden';
