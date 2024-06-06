@@ -1,10 +1,6 @@
 
 let articleData = JSON.parse(localStorage.getItem('fullArticleData'))
 
-// const img = document.querySelector('#articleImg');
-// img.src = articleData.urlImage;
-// img.alt = articleData.title + "-img";
-
 let blocksData = [
     {
         type: "image",

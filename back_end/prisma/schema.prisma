@@ -25,7 +25,9 @@ model user {
 model article {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   articleData Json
-  pageId      Int    @unique
+  pageId      Int
   userId      String @db.ObjectId
   user        user   @relation(fields: [userId], references: [id])
+
+  @@unique(name: "pageIdUserId", [pageId, userId])
 }

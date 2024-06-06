@@ -43,8 +43,6 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
 
     const articlesObjectList = await response.json();
 
-    console.log(articlesObjectList);
-
     if (articlesObjectList.length > 0) {
 
         articlesObjectList.forEach(wrongFormatArticleData => {
@@ -57,7 +55,8 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
             swiperSlideDiv.onclick = () => {
                 localStorage.removeItem('articleUrl');
                 localStorage.setItem('fullArticleData', JSON.stringify(articleData));
-                window.location.href = `/users/read_article`
+                localStorage.setItem('pageId', JSON.stringify(wrongFormatArticleData.pageId));
+                window.location.href = `/user/read_article`
             };
 
             const slideTitle = document.createElement('h3');

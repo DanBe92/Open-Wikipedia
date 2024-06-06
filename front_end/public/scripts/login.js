@@ -56,5 +56,5 @@ loginForm.addEventListener('submit', async (e) => {
     localStorage.setItem('user', JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
 
-    window.location.href = `/users`
+    window.location.href = `/user`
 })

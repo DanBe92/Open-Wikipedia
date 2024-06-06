@@ -26,7 +26,7 @@ export function userValidation(req, res, next) {
         },
         email: {
             email: true,
-            userExists: {id: req.params.id ? +req.params.id : req.params.id}
+            userExists: {id: req.body.id}
         },
         password: {
             length: { minimum: 8 }

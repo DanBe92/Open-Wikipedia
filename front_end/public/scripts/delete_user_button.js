@@ -2,7 +2,7 @@
 
 function userDelete() {
 
-    fetch(`http://localhost:8000/users`, { method: 'DELETE' })
+    fetch(`http://localhost:8000/user`, { method: 'DELETE' })
         .then(res => res.json())
         .then(user => {
             if (user.message) {

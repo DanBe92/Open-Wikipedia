@@ -9,7 +9,7 @@ function clearSearch() {
 
 
 // First Search
-
+let articleAlreadyInLibrary;
 document.querySelector('#searchButton')
     .addEventListener('click', async (e) => {
         e.preventDefault();
@@ -75,11 +75,13 @@ document.querySelector('#searchButton')
                             return
                         }
 
+                        localStorage.setItem('articleAlreadyInLibrary', JSON.stringify(true))
+
                     }
 
                     localStorage.setItem('articleUrl', JSON.stringify(articleUrlandCheckDouble.articleUrl))
                     localStorage.setItem('pageId', JSON.stringify(article.pageId))
-                    window.location.href = `/users/read_article`
+                    window.location.href = `/user/read_article`
 
                 }
 

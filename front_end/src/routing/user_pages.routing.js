@@ -3,12 +3,12 @@
 export default function userPagesRouting(app) {
 
     // User Dashboard
-    app.get('/users/', (req, res) => {
+    app.get('/user/', (req, res) => {
         res.render('pages/user');
     })
 
     // User Library
-    app.get('/users/library', (req, res) => {
+    app.get('/user/library', (req, res) => {
         res.render('pages/library');
     })
 

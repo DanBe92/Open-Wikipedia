@@ -40,11 +40,19 @@ export default function searchRouting(app) {
         try {
             let isArticle;
             const pageId = req.body.pageId;
+            const userId = req.user.id;
             // const language = await wiki.setLang('it');
 
             const page = await wiki.page(pageId);
 
-            const article = await prisma.article.findUnique({ where: { pageId: pageId } })
+            const article = await prisma.article.findUnique({ 
+                where: {
+                    pageIdUserId: {
+                        pageId: pageId,
+                        userId: userId
+                    }
+                }
+            })
 
             if (article) {
                 isArticle = true

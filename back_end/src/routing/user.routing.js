@@ -1,5 +1,5 @@
 import prisma from '../../db/prisma.js';
-import { userValidation } from '../validations/users.validations.js';
+import { userValidation } from '../validations/user.validations.js';
 import crypto from 'crypto';
 import isLoggedIn from '../middleware/isLoggedIn.js';
 
@@ -7,7 +7,7 @@ export default function userRouting(app) {
 
 
     // Get User By Id
-    app.get("/users", isLoggedIn, async (req, res) => {
+    app.get("/user", isLoggedIn, async (req, res) => {
 
         const user = await prisma.user.findUnique({ where: { id: req.user.id } })
         res.status(200).json(user)
@@ -16,7 +16,7 @@ export default function userRouting(app) {
 
 
     // Create New User
-    app.post("/users", userValidation, async (req, res) => {
+    app.post("/user", userValidation, async (req, res) => {
 
         const newUser = await prisma.user.create({
             data: {
@@ -34,7 +34,7 @@ export default function userRouting(app) {
 
 
     // Delete User
-    app.delete("/users", isLoggedIn, async (req, res) => {
+    app.delete("/user", isLoggedIn, async (req, res) => {
 
         const userId = req.user.id
         const user = await prisma.user.findUnique({ where: { id: userId } });
@@ -55,7 +55,7 @@ export default function userRouting(app) {
 
 
     // Update User Da modificare per Mongo Db
-    app.put('/users', isLoggedIn, userValidation, async (req, res) => {
+    app.put('/user', isLoggedIn, userValidation, async (req, res) => {
 
         const userId = req.user.id
 
@@ -69,9 +69,7 @@ export default function userRouting(app) {
                 data: {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
-                    birthday: moment(req.body.birthday, 'YYYY-MM-DD').toISOString(),
                     email: req.body.email,
-                    password: req.body.password,
                 }
             });
 

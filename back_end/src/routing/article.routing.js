@@ -5,6 +5,36 @@ import isLoggedIn from '../middleware/isLoggedIn.js';
 
 export default function articleRouting(app, db) {
 
+    // Check Single Article
+    app.post('/checkArticle', isLoggedIn, async (req, res) => {
+        try {
+            let isArticle;
+            const pageId = req.body.pageId;
+            const userId = req.user.id;
+
+            const article = await prisma.article.findUnique({
+                where: {
+                    pageIdUserId: {
+                        pageId: pageId,
+                        userId: userId
+                    }
+                }
+            })
+
+            if (article) {
+                isArticle = true;
+                res.status(200).json(isArticle)
+                return
+            }
+
+            res.status(404).json(isArticle)
+
+        } catch (error) {
+            console.log(error);
+            res.status(404).json({ message: "Article Not Found" })
+        }
+    });
+
     // Get Articles
     app.get("/getUserArticles", isLoggedIn, async (req, res) => {
 
@@ -17,7 +47,7 @@ export default function articleRouting(app, db) {
         })
 
         if (articles.length > 0) {
-            articles.forEach( article => {
+            articles.forEach(article => {
                 delete article.id
                 delete article.userId
             })
@@ -35,16 +65,34 @@ export default function articleRouting(app, db) {
     app.post("/articles", isLoggedIn, async (req, res) => {
 
         try {
+
             const userId = req.user.id;
             const pageId = +req.body.pageId;
 
-            const newArticle = await prisma.article.create({
-                data: {
+            // const newArticle = await prisma.article.create({
+            //     data: {
+            //         userId: userId,
+            //         pageId: pageId,
+            //         articleData: req.body.articleData
+            //     }
+            // });
+
+            const newArticle = await prisma.article.upsert({
+                where: {
+                    pageIdUserId: {
+                        pageId: pageId,
+                        userId: userId
+                    }
+                },
+                update: {
+                    articleData: req.body.articleData
+                },
+                create: {
                     userId: userId,
                     pageId: pageId,
                     articleData: req.body.articleData
                 }
-            })
+            });
 
             res.status(201).json(newArticle)
 
@@ -62,6 +110,35 @@ export default function articleRouting(app, db) {
 
             return
         }
+    });
+
+
+    // Update Article
+
+    app.put("/updateArticle", isLoggedIn, async (req, res) => {
+
+        const userId = req.user.id;
+        const pageId = +req.body.pageId;
+
+        const newArticle = await prisma.article.upsert({
+            where: {
+                pageIdUserId: {
+                    pageId: pageId,
+                    userId: userId
+                }
+            },
+            update: {
+                articleData: req.body.articleData
+            },
+            create: {
+                userId: userId,
+                pageId: pageId,
+                articleData: req.body.articleData
+            }
+        });
+
+        res.status(201).json(newArticle)
+
     });
 
 
@@ -86,8 +163,6 @@ export default function articleRouting(app, db) {
     //     })
 
 
-
-    // Update Article next
 
 
 }
