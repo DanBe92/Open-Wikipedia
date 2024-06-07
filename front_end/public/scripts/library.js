@@ -25,27 +25,23 @@ function articleDelete(pageId) {
 }
 
 
-(async () => {
-    const response = await fetch('http://localhost:8000/getUserArticles', {
+async function getUserArticles(pagination = 0) {
+    const response = await fetch(`http://localhost:8000/getUserArticles`, {
+        method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({pagination})
     });
 
     const articlesObjectList = await response.json();
 
     if (articlesObjectList.length > 0) {
 
-        const newList = articlesObjectList.sort((a, b) => {
-            console.log(a);
-            return a.articleData.blocks[1].data.text - b.articleData.blocks[1].data.text
-        })
+        document.querySelector('#articlesTable').innerHTML = '';
 
-        console.log("Old: ", articlesObjectList);
-        console.log("New: ", newList);
-
-        newList.forEach(wrongFormatArticleData => {
+        articlesObjectList.forEach(wrongFormatArticleData => {
 
             const articleData = formatData(wrongFormatArticleData);
 
@@ -106,7 +102,29 @@ function articleDelete(pageId) {
 
             articlesTable.appendChild(cardDiv);
 
-        })
+        });
+
+        return
     }
-})();
-    
+
+    localStorage.setItem('pagination', pagination - 9)
+
+};
+
+getUserArticles();
+
+localStorage.setItem('pagination', 0)
+
+function pagination(value) {
+    const pagination = +localStorage.getItem('pagination') + value
+
+    if (pagination < 0) {
+        localStorage.setItem('pagination', 0)
+        return
+    } else {
+        getUserArticles(pagination)
+    }
+
+    localStorage.setItem('pagination', pagination)
+}
+

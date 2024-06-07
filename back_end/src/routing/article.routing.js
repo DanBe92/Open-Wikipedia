@@ -8,7 +8,6 @@ export default function articleRouting(app, db) {
     // Check Single Article
     app.post('/checkArticle', isLoggedIn, async (req, res) => {
         try {
-            let isArticle;
             const pageId = req.body.pageId;
             const userId = req.user.id;
 
@@ -19,26 +18,26 @@ export default function articleRouting(app, db) {
                         userId: userId
                     }
                 }
-            })
+            });
 
             if (article) {
-                isArticle = true;
-                res.status(200).json(isArticle)
+                res.status(200).json({ 'isArticle': true })
                 return
             }
 
-            res.status(404).json(isArticle)
+            res.json({ 'isArticle': false })
 
         } catch (error) {
             console.log(error);
-            res.status(404).json({ message: "Article Not Found" })
+            res.json({ message: "Article Not Found" })
         }
     });
 
-    // Get Articles
-    app.get("/getUserArticles", isLoggedIn, async (req, res) => {
+    // Get 9 User Articles A to Z
+    app.post("/getUserArticles", isLoggedIn, async (req, res) => {
 
         const userId = req.user.id;
+        const pagination = req.body.pagination;
 
         const articles = await prisma.article.findMany({
             where: {
@@ -50,13 +49,71 @@ export default function articleRouting(app, db) {
             articles.forEach(article => {
                 delete article.id
                 delete article.userId
-            })
-            res.status(200).json(articles);
+            });
+
+            const sortedArticles = articles.sort(function (a, b) {
+                if (a.articleData.blocks[1].data.text < b.articleData.blocks[1].data.text) {
+                  return -1;
+                }
+                if (a.articleData.blocks[1].data.text > b.articleData.blocks[1].data.text) {
+                  return 1;
+                }
+                return 0;
+              });
+
+              let nineSortedArticles = [];
+
+            let i = pagination;
+
+            while (i < pagination + 9 && i < sortedArticles.length) {
+                nineSortedArticles.push(sortedArticles[i])
+                i++
+            }
+
+            res.status(200).json(nineSortedArticles);
             return
         }
 
-        res.status(404).json({ message: 'No articles saved from this user' })
+        res.json({ message: 'No articles have been saved from this user' })
 
+
+    });
+
+    // Get 10 Latest User Articles
+    app.get("/getLatestUserArticles", isLoggedIn, async (req, res) => {
+
+        const userId = req.user.id;
+
+        const articles = await prisma.article.findMany({
+            where: {
+                userId: userId,
+            },
+        })
+
+        if (articles.length > 0) {
+            articles.forEach(article => {
+                delete article.id
+                delete article.userId
+            })
+
+            const sortedArticles = articles.sort((a, b) => {
+                return b.articleData.time - a.articleData.time;
+            })
+
+            let tenSortedArticles = [];
+
+            let i = 0
+
+            while (i < 10 && i < sortedArticles.length) {
+                tenSortedArticles.push(sortedArticles[i])
+                i++
+            }
+
+            res.status(200).json(tenSortedArticles);
+            return
+        }
+
+        res.json({ message: 'No articles have been saved from this user' })
 
     });
 
@@ -147,26 +204,26 @@ export default function articleRouting(app, db) {
 
         try {
 
-        const userId = req.user.id
-        const pageId = +req.body.pageId;
+            const userId = req.user.id
+            const pageId = +req.body.pageId;
 
-        const deletedArticle = await prisma.article.delete({
-            where: {
-                pageIdUserId: {
-                    pageId: pageId,
-                    userId: userId
+            const deletedArticle = await prisma.article.delete({
+                where: {
+                    pageIdUserId: {
+                        pageId: pageId,
+                        userId: userId
+                    }
                 }
-            }
-        })
+            })
 
-        res.json(deletedArticle)
+            res.json(deletedArticle)
 
-    } catch (err) {
+        } catch (err) {
 
-        console.log(err);
-        res.status(404).json( { message: 'Article not Found' } )
+            console.log(err);
+            res.status(404).json({ message: 'Article not Found' })
 
-    }
+        }
 
     })
 

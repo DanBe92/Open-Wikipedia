@@ -30,6 +30,8 @@
         if (response.status === 200) {
             user = await response.json()
         }
+
+        user = undefined;
     })();
 
     if (user) {

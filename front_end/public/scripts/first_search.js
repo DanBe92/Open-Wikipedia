@@ -9,7 +9,6 @@ function clearSearch() {
 
 
 // First Search
-let articleAlreadyInLibrary;
 document.querySelector('#searchButton')
     .addEventListener('click', async (e) => {
         e.preventDefault();
@@ -74,8 +73,6 @@ document.querySelector('#searchButton')
                         if (confirm("This article is already saved in your library. Do you want to search for it again? Confirm to proceed.") == false) {
                             return
                         }
-
-                        localStorage.setItem('articleAlreadyInLibrary', JSON.stringify(true))
 
                     }
 

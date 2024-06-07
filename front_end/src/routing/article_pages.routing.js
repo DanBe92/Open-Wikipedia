@@ -17,4 +17,8 @@ export default function articlePagesRouting(app) {
         res.render('pages/edit_article');
     })
 
+    app.post('/user/edit_article', (req, res) => {
+        res.render('pages/edit_article');
+    })
+
 }

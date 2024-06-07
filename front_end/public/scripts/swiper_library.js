@@ -34,7 +34,7 @@ function formatData(wrongFormatArticleData) {
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
 (async () => {
-    const response = await fetch('http://localhost:8000/getUserArticles', {
+    const response = await fetch('http://localhost:8000/getLatestUserArticles', {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
             };
 
             const slideTitle = document.createElement('h3');
-            slideTitle.className = '"text-xl"';
+            slideTitle.className = 'text-xl text-center';
             slideTitle.textContent = articleData.title;
             swiperSlideDiv.appendChild(slideTitle);
 

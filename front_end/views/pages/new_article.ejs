@@ -19,6 +19,13 @@
 
             <!-- Page content here -->
             <div class="w-full h-full p-4">
+
+                <div class="flex justify-between items-center">
+                    <h1 class="text-3xl font-bold my-8">Write your Article</h1>
+                    <img id="saveIcon" onclick="saveNewArticle()" class="cursor-pointer max-h-16 max-w-16 md:mr-10" src="/assets/save_icon.png" alt="save-icon">
+                </div>
+
+                <div id="editorjs" class="border-solid border-2"></div>
             </div>
 
 
@@ -27,8 +34,16 @@
             <%- include('../components/footer_user_logged'); %>
                 <!-- Footer component end -->
 
-            <!-- Last Drawer Part -->
-            <%- include('../layouts/after_page_content'); %>
+                <!-- Last Drawer Part -->
+                <%- include('../layouts/after_page_content'); %>
+
+                    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+
+                    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+
+                    <script src="/scripts/new_article.js"></script>
+                    <!-- <script src="/scripts/save_article.js"></script> -->
 
 </body>
 

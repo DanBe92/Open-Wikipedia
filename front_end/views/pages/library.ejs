@@ -20,6 +20,8 @@
             <!-- Page content here -->
             <div id="main-container" class="w-full h-full p-4">
 
+                <h1 class="text-3xl font-bold mt-8 text-center">Latest Articles:</h1>
+
                 <!-- Swiper Compomemt -->
                 <div class="swiper mySwiper my-10">
                     <div class="swiper-wrapper items-center">
@@ -29,7 +31,14 @@
 
                 <hr class="my-8 border-y-4">
 
-                <div id="articlesTable" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <h1 class="text-3xl font-bold mt-8 text-center">All your articles A to Z:</h1>
+
+                <div id="articlesTable" class="grid grid-cols-1 md:grid-cols-3 gap-4 my-10 mx-8">
+                </div>
+
+                <div class="flex w-full justify-center items-center gap-5">
+                    <button class="btn btn-outline" onclick="pagination(-9)">Prev.</button>
+                    <button class="btn btn-outline" onclick="pagination(9)">Next.</button>
                 </div>
 
             </div>

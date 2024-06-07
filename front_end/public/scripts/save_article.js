@@ -1,7 +1,26 @@
 
 async function saveToDatabase() {
 
-    const pageId = JSON.parse(localStorage.getItem('pageId'));
+    let pageId = JSON.parse(localStorage.getItem('pageId'));
+
+    // if (!pageId) {
+    //     pageId = 9999999999;
+    //     let customPageIds = JSON.parse(localStorage.getItem('customPageIds'));
+
+    //     console.log("Custom", customPageIds);
+
+    //     if (!customPageIds) {
+    //         customPageIds = [];
+    //     }
+
+    //     while (customPageIds.includes(pageId)) {
+    //         pageId++
+    //         console.log('Page log:', pageId);
+    //     }
+
+    //     customPageIds.push(pageId);
+    //     localStorage.setItem('customPageIds', JSON.stringify(customPageIds))
+    // }
 
     const response = await fetch('http://localhost:8000/articles', {
         method: 'POST',
@@ -16,6 +35,7 @@ async function saveToDatabase() {
     });
 
     if (response.status === 201) {
+        localStorage.removeItem('pageId');
         window.location.href = `/user/library`;
         return
     }
@@ -29,14 +49,13 @@ async function saveToDatabase() {
 async function saveNewArticle() {
 
     articleData = JSON.parse(localStorage.getItem('fullArticleData'));
-    articleAlreadyInLibrary = JSON.parse(localStorage.getItem('articleAlreadyInLibrary'));
 
     let blocksData = [
         {
             type: "image",
             data: {
                 file: {
-                    url: articleData.urlImage
+                    url: articleData.urlImage ? articleData.urlImage : "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png",
                 },
                 caption: articleData.title + "-img"
             }
@@ -69,7 +88,7 @@ async function saveNewArticle() {
                 class: ImageTool,
                 config: {
                     endpoints: {
-                        byUrl: articleData.urlImage,
+                        byUrl: articleData.urlImage ? articleData.urlImage : "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png",
                     }
                 }
             }
@@ -85,13 +104,27 @@ async function saveNewArticle() {
 
             articleData = await editor.save()
 
-            if (articleAlreadyInLibrary) {
+            let pageId = JSON.parse(localStorage.getItem('pageId'));
+
+            const res = await fetch('http://localhost:8000/checkArticle', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    pageId
+                })
+            });
+
+            const article = await res.json();
+
+            if (article.isArticle) {
 
                 if (confirm("This article is already saved in your library. Do you want to save it anyway? Previous data will be lost. Confirm to proceed.") == false) {
                     return
                 }
 
-                localStorage.removeItem('articleAlreadyInLibrary');
             }
 
             saveToDatabase()
@@ -116,11 +149,11 @@ async function saveEditedArticle() {
         })
     });
 
-    const checkArticle = await response.json();
+    const isArticle = await response.json();
 
     articleData = await editor.save();
 
-    if (checkArticle) {
+    if (isArticle) {
         if (confirm("This article is already saved in your library. Do you want to save it anyway? Previous data will be lost. Confirm to proceed.") == false) {
             return
         }

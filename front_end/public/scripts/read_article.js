@@ -43,6 +43,7 @@ function createArticle(articleData) {
     articleData.paragraphs.forEach(par => {
         const p = document.createElement('p');
         p.textContent = par;
+        p.className = 'max-w-full';
         div.appendChild(p);
     })
 
@@ -96,6 +97,7 @@ async function showArticle(limit = 6, clearFlag = 1) {
         document.querySelector('#readFullArticle').style.display = "none";
         document.querySelector('#infoFullArticle').style.display = "none";
         document.querySelector('#readLimitedArticle').style.display = "none";
+        document.querySelector('#saveIcon').style.display = "none";
 
         articleData = JSON.parse(localStorage.getItem('fullArticleData'));
 
