@@ -3,24 +3,28 @@ async function saveToDatabase() {
 
     let pageId = JSON.parse(localStorage.getItem('pageId'));
 
-    // if (!pageId) {
-    //     pageId = 9999999999;
-    //     let customPageIds = JSON.parse(localStorage.getItem('customPageIds'));
+    let isArticle = true;
+    if (pageId === 0) {
+        isArticle = false;
+    }
 
-    //     console.log("Custom", customPageIds);
+    while (!isArticle) {
 
-    //     if (!customPageIds) {
-    //         customPageIds = [];
-    //     }
+        pageId = Math.floor(Math.random() * 9999999999);
 
-    //     while (customPageIds.includes(pageId)) {
-    //         pageId++
-    //         console.log('Page log:', pageId);
-    //     }
+        const res = await fetch('http://localhost:8000/checkArticle', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                pageId
+            })
+        });
 
-    //     customPageIds.push(pageId);
-    //     localStorage.setItem('customPageIds', JSON.stringify(customPageIds))
-    // }
+        isArticle = await res.json();
+    }
 
     const response = await fetch('http://localhost:8000/articles', {
         method: 'POST',
@@ -42,7 +46,7 @@ async function saveToDatabase() {
 
     const error = await response.json();
 
-    alert(error.message)
+    alertHandler(error.message)
 }
 
 
@@ -121,13 +125,17 @@ async function saveNewArticle() {
 
             if (article.isArticle) {
 
-                if (confirm("This article is already saved in your library. Do you want to save it anyway? Previous data will be lost. Confirm to proceed.") == false) {
-                    return
+                confirmModal.showModal();
+                document.querySelector('#confirmTitle').textContent = "Article Found";
+                document.querySelector('#confirmMessage').textContent = "This article is already saved in your library. Do you want to save it anyway? Previous data will be lost. Confirm to proceed.";
+                document.querySelector('#confirmButton').onclick = () => {
+                    confirmModal.close();
+                    saveToDatabase();
                 }
 
+            } else {
+                saveToDatabase()
             }
-
-            saveToDatabase()
 
         })
         .catch((reason) => {
@@ -154,10 +162,14 @@ async function saveEditedArticle() {
     articleData = await editor.save();
 
     if (isArticle) {
-        if (confirm("This article is already saved in your library. Do you want to save it anyway? Previous data will be lost. Confirm to proceed.") == false) {
-            return
+        confirmModal.showModal();
+        document.querySelector('#confirmTitle').textContent = "Article Found";
+        document.querySelector('#confirmMessage').textContent = "This article is already saved in your library. Do you want to save it anyway? Previous data will be lost. Confirm to proceed.";
+        document.querySelector('#confirmButton').onclick = () => {
+            confirmModal.close();
+            saveToDatabase("Update");
         }
+    } else {
+        saveToDatabase("Update");
     }
-
-    saveToDatabase("Update");
 }

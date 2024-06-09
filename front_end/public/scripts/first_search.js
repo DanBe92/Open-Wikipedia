@@ -68,18 +68,27 @@ document.querySelector('#searchButton')
 
                     const articleUrlandCheckDouble = await response.json();
 
+                    console.log("articleUrlandCheckDouble", articleUrlandCheckDouble);
+
                     if (articleUrlandCheckDouble.isArticle) {
 
-                        if (confirm("This article is already saved in your library. Do you want to search for it again? Confirm to proceed.") == false) {
-                            return
+                        confirmModal.showModal();
+                        document.querySelector('#confirmTitle').textContent = "Action Required";
+                        document.querySelector('#confirmMessage').textContent = "This article is already saved in your library. Do you want to search for it again? Confirm to proceed.";
+                        document.querySelector('#confirmButton').onclick = () => {
+                            confirmModal.close();
+                            localStorage.setItem('articleUrl', JSON.stringify(articleUrlandCheckDouble.articleUrl))
+                            localStorage.setItem('pageId', JSON.stringify(article.pageId))
+                            window.location.href = `/user/read_article`
                         }
 
+                    } else {
+                        localStorage.setItem('articleUrl', JSON.stringify(articleUrlandCheckDouble.articleUrl))
+                        localStorage.setItem('pageId', JSON.stringify(article.pageId))
+                        window.location.href = `/user/read_article`
                     }
 
-                    localStorage.setItem('articleUrl', JSON.stringify(articleUrlandCheckDouble.articleUrl))
-                    localStorage.setItem('pageId', JSON.stringify(article.pageId))
-                    window.location.href = `/user/read_article`
-
+                    return
                 }
 
                 li.appendChild(h2);
@@ -99,22 +108,3 @@ document.querySelector('#searchButton')
             searchDiv.appendChild(div);
         }
     });
-
-
-
-// Happened Today
-
-// document.querySelector('#daily-button')
-//     .addEventListener('click', async (e) => {
-//         e.preventDefault();
-
-//         const dailyResult = await fetch('http://127.0.0.1:8000/daily_article')
-
-//         const dailyData = await dailyResult.json();
-
-//         console.log(dailyData);
-
-//     });
-
-
-

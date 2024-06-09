@@ -4,7 +4,7 @@ export default function userPagesRouting(app) {
 
     // User Dashboard
     app.get('/user/', (req, res) => {
-        res.render('pages/user');
+        res.render('pages/profile');
     })
 
     // User Library

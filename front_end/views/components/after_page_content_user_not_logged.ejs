@@ -17,6 +17,15 @@
 
     let user = JSON.parse(localStorage.getItem('user'));
 
+    function alertHandler(alertMessage, alertTitle = "Something is Wrong") {
+        alertModal.showModal();
+        document.querySelector('#alertTitle').textContent = alertTitle;
+        document.querySelector('#alertMessage').textContent = alertMessage;
+        document.querySelector('#alertButton').onclick = () => {
+            alertModal.close();
+        };
+    }
+
     (async function () {
         const response = await fetch(`http://localhost:8000/user`,
             {

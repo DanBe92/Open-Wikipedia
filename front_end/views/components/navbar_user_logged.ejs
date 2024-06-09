@@ -23,7 +23,6 @@
             <ul class="flex justify-center items-center gap-6 rounded-lg text-lg font-[500]">
 
                 <!-- Navbar menu content here -->
-                <li><a href="/homepage">Homepage</a></li>
                 <li><a class="cursor-pointer" onclick="window.location.href = `/user`">Profile</a></li>
                 <li><a class="cursor-pointer" onclick="window.location.href = `/user/library`">Library</a></li>
                 <li><a class="cursor-pointer" onclick="window.location.href = `/user/new_article`">New Article</a></li>
@@ -59,3 +58,6 @@
     </div>
 </div>
 <!-- Navbar end-->
+
+<!-- Message Dialog-->
+<%- include('../components/modal_messages_handler'); %>

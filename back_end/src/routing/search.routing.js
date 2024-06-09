@@ -58,7 +58,7 @@ export default function searchRouting(app) {
                 isArticle = true
             }
 
-            res.status(200).json({ 'isArticle': isArticle, 'articleUrl': page.fullurl } )
+            res.status(200).json({ 'isArticle': isArticle, 'articleUrl': page.fullurl })
 
         } catch (error) {
             console.log(error);
@@ -114,17 +114,29 @@ export default function searchRouting(app) {
     })
 
 
-    // Gets the "Happened today" articles divided by topics
-    app.get('/daily_article', isLoggedIn, async (req, res) => {
+    // Gets the Daily Article
+    app.get('/dailyArticlePreview', async (req, res) => {
         try {
 
             // const language = await wiki.setLang('it');
 
-            const dailyResults = await wiki.onThisDay({ limit: 3 });
+            const data = await axios.get('https://en.wikipedia.org/wiki/Main_Page');
 
-            console.log(dailyResults);
+            const dom = new JSDOM(data.data);
 
-            res.status(200).json(dailyResults)
+            const imgCaption = dom.window.document.querySelector('#mp-tfa-img .thumbcaption').textContent;
+            const tfaTitle = dom.window.document.querySelector('#mp-tfa b:last-child a').title;
+            const tfaUrlImage = dom.window.document.querySelector('#mp-tfa-img img').src;
+            const tfaUrl = 'https://en.wikipedia.org' + dom.window.document.querySelector('#mp-tfa b:last-child a').href;
+            const tfaParagraph = dom.window.document.querySelector('#mp-tfa').textContent.replace(imgCaption, '').replace('\n\n\n\n', '').split('(Full article...)\n')[0];
+            const baseUrlImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png"
+
+            res.status(200).json({
+                'articleUrl': tfaUrl,
+                'articleTitle': tfaTitle,
+                'urlImage': tfaUrlImage ? "https:" + tfaUrlImage : baseUrlImage,
+                'paragraph': tfaParagraph
+            })
 
         } catch (error) {
             console.log(error);

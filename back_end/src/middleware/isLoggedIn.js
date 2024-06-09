@@ -5,7 +5,6 @@ export default function isLoggedIn(req, res, next) {
     const token = req.headers.authorization?.replace("Bearer ", "");
 
     if (!token) {
-        console.log("Qui?");
         return res.sendStatus(401);
     }
 

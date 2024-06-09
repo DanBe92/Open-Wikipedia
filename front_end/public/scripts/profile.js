@@ -115,7 +115,6 @@ userForm.addEventListener('submit', (e) => {
         })
     })
 
-        // Da controllare il codice seguente
         .then(res => res.json())
         .then(data => {
 
@@ -125,7 +124,10 @@ userForm.addEventListener('submit', (e) => {
             }
 
             localStorage.setItem('user', JSON.stringify(data));
-            alert("Profile succesfully updated");
-            window.location.reload();
+            alertHandler("Profile succesfully updated", 'Action Success');
+            document.querySelector('#alertButton').onclick = () => {
+                alertModal.close();
+                window.location.reload();
+            };    
         })
 })

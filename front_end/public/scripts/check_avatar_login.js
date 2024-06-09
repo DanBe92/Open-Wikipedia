@@ -1,6 +1,15 @@
 
 let user = JSON.parse(localStorage.getItem('user'));
 
+function alertHandler(alertMessage, alertTitle = "Something is Wrong") {
+    alertModal.showModal();
+    document.querySelector('#alertTitle').textContent = alertTitle;
+    document.querySelector('#alertMessage').textContent = alertMessage;
+    document.querySelector('#alertButton').onclick = () => {
+        alertModal.close();
+    };
+};
+
 (async () => {
     const response = await fetch(`http://localhost:8000/user`,
         {
@@ -12,9 +21,15 @@ let user = JSON.parse(localStorage.getItem('user'));
     )
 
     if (response.status !== 200) {
-        alert('Session Expired') // Sostituire con un modale magari
-        localStorage.clear();
-        window.location.href = '/homepage';
+        alertModal.showModal();
+        document.querySelector('#alertTitle').textContent = 'Session Expired';
+        document.querySelector('#alertMessage').textContent = "You'll be redirect to the homepage for the log in";
+        document.querySelector('#alertButton').onclick = () => {
+            alertModal.close();
+            localStorage.clear();
+            window.location.href = '/homepage';
+        };
+        return
     } else {
         document.querySelector('#signUpList').style.display = "none";
         document.querySelector('#loginList').style.display = "none";

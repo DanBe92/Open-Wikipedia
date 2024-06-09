@@ -1,0 +1,20 @@
+<dialog id="alertModal" class="modal">
+    <div class="modal-box flex flex-col gap-4">
+        <h3 id="alertTitle" class="font-bold text-2xl"></h3>
+        <div class="flex items-center justify-between">
+            <p id="alertMessage" class="font-semibold text-lg"></p>
+            <button id="alertButton" class="btn btn-outline">Ok</button>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="confirmModal" class="modal">
+    <div class="modal-box flex flex-col gap-4">
+        <h3 id="confirmTitle" class="font-bold text-2xl"></h3>
+        <div class="modal-action">
+            <p id="confirmMessage" class="font-semibold text-lg"></p>
+            <button id="denyButton" class="btn" onclick="confirmModal.close()">Cancel</button>
+            <button id="confirmButton" class="btn btn-primary">Ok</button>
+        </div>
+    </div>
+</dialog>

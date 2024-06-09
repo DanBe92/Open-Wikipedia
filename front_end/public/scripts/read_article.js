@@ -1,23 +1,19 @@
 
-let articleData;
+function limitedArticleInfo() {
+    document.querySelector('#actionsDiv').style.display = "none";
+    document.querySelector('#infoLimitedArticle').style.display = "block";
+    document.querySelector('#readFullArticle').style.display = "block";
+    document.querySelector('#infoFullArticle').style.display = "none";
+    document.querySelector('#readLimitedArticle').style.display = "none";
+};
 
-
-function clearArticleData(flag = null) {
-
-    document.querySelector('#textContent')?.remove();
-
-    if (!flag) {
-        document.querySelector('#infoLimitedArticle').style.display = "none";
-        document.querySelector('#readFullArticle').style.display = "none";
-        document.querySelector('#infoFullArticle').style.display = "block";
-        document.querySelector('#readLimitedArticle').style.display = "block";
-    } else {
-        document.querySelector('#infoLimitedArticle').style.display = "block";
-        document.querySelector('#readFullArticle').style.display = "block";
-        document.querySelector('#infoFullArticle').style.display = "none";
-        document.querySelector('#readLimitedArticle').style.display = "none";
-    }
-}
+function fullArticleInfo() {
+    document.querySelector('#actionsDiv').style.display = "none";
+    document.querySelector('#infoLimitedArticle').style.display = "none";
+    document.querySelector('#readFullArticle').style.display = "none";
+    document.querySelector('#infoFullArticle').style.display = "block";
+    document.querySelector('#readLimitedArticle').style.display = "block";
+};
 
 
 function createArticle(articleData) {
@@ -48,73 +44,87 @@ function createArticle(articleData) {
     })
 
     articleContent.appendChild(div);
+
+    document.querySelector('#actionsDiv').style.display = "flex";
 }
 
 
-async function showArticle(limit = 6, clearFlag = 1) {
+async function showArticleFromLibrary() {
 
-    clearArticleData(clearFlag);
+    document.querySelector('#textContent')?.remove();
+    document.querySelector('#infoLimitedArticle').style.display = "none";
+    document.querySelector('#readFullArticle').style.display = "none";
+    document.querySelector('#infoFullArticle').style.display = "none";
+    document.querySelector('#readLimitedArticle').style.display = "none";
+    document.querySelector('#saveIcon').style.display = "none";
 
-    const articleUrl = JSON.parse(localStorage.getItem('articleUrl'));
+    const articleData = JSON.parse(localStorage.getItem('fullArticleData'));
 
-    if (articleUrl) {
-        const response = await fetch('http://localhost:8000/getFullArticle', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                articleUrl,
-                limit
-            })
+    createArticle(articleData);
+};
+
+
+async function showArticleFromSearch(limit = 6) {
+
+    document.querySelector('#textContent')?.remove();
+
+    const response = await fetch('http://localhost:8000/getFullArticle', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            articleUrl,
+            limit
         })
+    })
 
-        if (response.status !== 200) {
-            const searchDiv = document.querySelector('#searchDiv');
+    if (response.status !== 200) {
+        const searchDiv = document.querySelector('#searchDiv');
 
-            const div = document.createElement('div');
-            div.id = "searchResults"
-            div.className = 'menu';
-            div.classList.add('flex', 'flex-col', 'justify-start', 'gap-4', 'text-lg', 'font-semibold')
+        const div = document.createElement('div');
+        div.id = "searchResults"
+        div.className = 'menu';
+        div.classList.add('flex', 'flex-col', 'justify-start', 'gap-4', 'text-lg', 'font-semibold')
 
-            const h2 = document.createElement('h2');
-            h2.textContent = "Couldn't load the article";
-            h2.style.color = 'red';
+        const h2 = document.createElement('h2');
+        h2.textContent = "Couldn't load the article";
+        h2.style.color = 'red';
 
-            div.appendChild(h2);
-            searchDiv.appendChild(div);
-        } else {
-            articleData = await response.json();
-            createArticle(articleData);
-            localStorage.setItem('fullArticleData', JSON.stringify(articleData));
-        }
+        div.appendChild(h2);
+        searchDiv.appendChild(div);
 
         return
 
     } else {
-        document.querySelector('#infoLimitedArticle').style.display = "none";
-        document.querySelector('#readFullArticle').style.display = "none";
-        document.querySelector('#infoFullArticle').style.display = "none";
-        document.querySelector('#readLimitedArticle').style.display = "none";
-        document.querySelector('#saveIcon').style.display = "none";
-
-        articleData = JSON.parse(localStorage.getItem('fullArticleData'));
-
+        const articleData = await response.json();
         createArticle(articleData);
+        localStorage.setItem('fullArticleData', JSON.stringify(articleData));
     }
-};
 
-showArticle();
+}
+
+const articleUrl = JSON.parse(localStorage.getItem('articleUrl'));
+
+if (articleUrl) {
+    showArticleFromSearch();
+} else {
+    showArticleFromLibrary();
+}
+
+
 
 document.querySelector('#readFullArticle')
     .addEventListener('click', (e) => {
         e.preventDefault();
-        showArticle(999, null);
+        fullArticleInfo();
+        showArticleFromSearch(999);
     });
 
 document.querySelector('#readLimitedArticle')
     .addEventListener('click', (e) => {
         e.preventDefault();
-        showArticle();
+        limitedArticleInfo();
+        showArticleFromSearch();
     });

@@ -19,24 +19,27 @@
 
             <!-- Page content here -->
             <div class="w-full h-full p-4 flex flex-col shadow-xl">
-                <div class="flex justify-center items-center gap-4 my-4">
-                    <p id="infoLimitedArticle" class="text-lg font-semibold">This reading is limited to 5 paragraphs.
-                    </p>
-                    <p id="infoFullArticle" class="text-lg font-semibold hidden">You're reading the full article.</p>
-                    <button id="readFullArticle" class="btn btn-outline">Read Full Article</button>
-                    <button id="readLimitedArticle" class="btn btn-outline hidden">Read first 5 Paragraphs</button>
+
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 my-4">
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+                        <p id="infoLimitedArticle" class="text-lg font-semibold">This reading is limited to 5 paragraphs.
+                        </p>
+                        <p id="infoFullArticle" class="text-lg font-semibold hidden">You're reading the full article.</p>
+                        <button id="readFullArticle" class="btn btn-outline">Read Full Article</button>
+                        <button id="readLimitedArticle" class="btn btn-outline hidden">Read first 5 Paragraphs</button>
+                    </div>
+                    <div id="actionsDiv" class="hidden justify-center items-center gap-8 md:mr-10 my-4">
+                        <img id="saveIcon" onclick="saveNewArticle()" class="cursor-pointer max-h-10 max-w-10"
+                            src="/assets/save_icon.png" alt="save-icon">
+                        <img id="editIcon" onclick="window.location.href = `/user/edit_article`"
+                            class="cursor-pointer max-h-10 max-w-10" src="/assets/edit_icon.png"
+                            alt="save-icon">
+                    </div>
                 </div>
 
                 <div id="articleContent" class="flex flex-col gap-8">
                     <div class="flex justify-between items-center">
                         <img id="articleImg">
-                        <div class="flex flex-col justify-center items-center gap-8">
-                            <img id="saveIcon" onclick="saveNewArticle()" class="cursor-pointer max-h-16 max-w-16 md:mr-10"
-                                src="/assets/save_icon.png" alt="save-icon">
-                            <img id="editIcon" onclick="window.location.href = `/user/edit_article`"
-                                class="cursor-pointer max-h-16 max-w-16 md:mr-10" src="/assets/edit_icon.png"
-                                alt="save-icon">
-                        </div>
                     </div>
                 </div>
 

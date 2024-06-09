@@ -84,7 +84,7 @@ signUpForm.addEventListener('submit', (e) => {
 
     const firstName = firstNameTag.value;
     const lastName = lastNameTag.value;
-    const email = emailTag.value;
+    const email = emailTag.value.toLowerCase();
     const password = passwordTag.value;
     const passwordConfirmation = passwordConfirmationTag.value;
 
@@ -117,7 +117,7 @@ signUpForm.addEventListener('submit', (e) => {
                 checkValidation(data.error);
                 return
             }
-            alert("Account Created. You can now log in!")
+            alertHandler("You can now log in!", "Account Created");
             signUpModal.close();
         })
 

@@ -27,7 +27,7 @@ model article {
   articleData Json
   pageId      Int
   userId      String @db.ObjectId
-  user        user   @relation(fields: [userId], references: [id])
+  user        user   @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@unique(name: "pageIdUserId", [pageId, userId])
 }

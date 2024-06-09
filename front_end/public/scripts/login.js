@@ -24,7 +24,7 @@ loginForm.addEventListener('submit', async (e) => {
 
     cleanErrors();
 
-    const loginEmail = e.target.children[0].value;
+    const loginEmail = e.target.children[0].value.toLowerCase();
     const loginPassword = e.target.children[1].value;
 
     const loginValidation = loginFormValidation(loginEmail, loginPassword);

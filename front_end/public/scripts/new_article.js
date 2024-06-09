@@ -53,7 +53,7 @@ async function saveToDatabase(articleData) {
 
     const error = await response.json();
 
-    alert(error.message)
+    alertHandler(error.message)
 }
 
 

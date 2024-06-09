@@ -36,46 +36,53 @@ export default function articleRouting(app, db) {
     // Get 9 User Articles A to Z
     app.post("/getUserArticles", isLoggedIn, async (req, res) => {
 
-        const userId = req.user.id;
-        const pagination = req.body.pagination;
+        try {
+            const userId = req.user.id;
+            const pagination = req.body.pagination;
 
-        const articles = await prisma.article.findMany({
-            where: {
-                userId: userId
-            }
-        })
-
-        if (articles.length > 0) {
-            articles.forEach(article => {
-                delete article.id
-                delete article.userId
-            });
-
-            const sortedArticles = articles.sort(function (a, b) {
-                if (a.articleData.blocks[1].data.text < b.articleData.blocks[1].data.text) {
-                  return -1;
+            const articles = await prisma.article.findMany({
+                where: {
+                    userId: userId
                 }
-                if (a.articleData.blocks[1].data.text > b.articleData.blocks[1].data.text) {
-                  return 1;
+            })
+
+            console.log(articles);
+
+            if (articles.length > 0) {
+                articles.forEach(article => {
+                    delete article.id
+                    delete article.userId
+                });
+
+                const sortedArticles = articles.sort(function (a, b) {
+                    if (a.articleData.blocks[1].data.text < b.articleData.blocks[1].data.text) {
+                        return -1;
+                    }
+                    if (a.articleData.blocks[1].data.text > b.articleData.blocks[1].data.text) {
+                        return 1;
+                    }
+                    return 0;
+                });
+
+                let nineSortedArticles = [];
+
+                let i = pagination;
+
+                while (i < pagination + 9 && i < sortedArticles.length) {
+                    nineSortedArticles.push(sortedArticles[i])
+                    i++
                 }
-                return 0;
-              });
 
-              let nineSortedArticles = [];
-
-            let i = pagination;
-
-            while (i < pagination + 9 && i < sortedArticles.length) {
-                nineSortedArticles.push(sortedArticles[i])
-                i++
+                res.status(200).json(nineSortedArticles);
+                return
             }
 
-            res.status(200).json(nineSortedArticles);
-            return
+            res.json({ message: 'No articles have been saved from this user' })
+
+        } catch (error) {
+            console.log(error);
+            res.json({ message: "Articles Not Found" })
         }
-
-        res.json({ message: 'No articles have been saved from this user' })
-
 
     });
 

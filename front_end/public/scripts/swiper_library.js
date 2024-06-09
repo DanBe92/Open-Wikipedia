@@ -106,6 +106,9 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
     p.textContent = "Search for an article and save it, then come here to read it.";
     div.appendChild(p);
 
+    document.querySelector('#latestArticlesH1').className = 'hidden';
     document.querySelector('.swiper').className = 'hidden';
+    document.querySelector('#AtoZArticlesH1').className = 'hidden';
+    document.querySelector('#paginationButtons').className = 'hidden';
 
 })();

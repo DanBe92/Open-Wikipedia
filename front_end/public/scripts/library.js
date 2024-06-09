@@ -16,10 +16,14 @@ function articleDelete(pageId) {
         .then(article => {
             console.log(article);
             if (article.message) {
-                alert(article.message);
+                alertHandler(article.message);
             } else {
-                alert(`The article ${article.articleData.blocks[1].data.text} has been deleted.`);
-                window.location.href = '/user/library';
+                alertHandler(`The article ${article.articleData.blocks[1].data.text} has been deleted.`, 'Action Success');
+                document.querySelector('#alertButton').onclick = () => {
+                    alertModal.close();
+                    window.location.href = '/user/library';
+                };
+
             }
         })
 }
@@ -32,7 +36,7 @@ async function getUserArticles(pagination = 0) {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({pagination})
+        body: JSON.stringify({ pagination })
     });
 
     const articlesObjectList = await response.json();
@@ -60,14 +64,14 @@ async function getUserArticles(pagination = 0) {
             cardDiv.appendChild(figure);
 
             const cardBody = document.createElement('div');
-            cardBody.className = 'card-body justify-between items-center';
+            cardBody.className = 'card-body justify-between items-center bg-gray-100';
 
             const h2 = document.createElement('h2');
             h2.className = 'card-title text-center';
             h2.textContent = articleData.title;
 
             const cardActionsDiv = document.createElement('div');
-            cardActionsDiv.className = 'card-actions justify-center items-center';
+            cardActionsDiv.className = 'card-actions lg:flex-col justify-center items-center';
 
             const buttonEdit = document.createElement('button');
             buttonEdit.className = 'btn btn-outline';
@@ -83,11 +87,12 @@ async function getUserArticles(pagination = 0) {
             buttonDelete.className = 'btn bg-red-400';
             buttonDelete.textContent = 'Delete';
 
-            buttonDelete.onclick = (event) => {
-
-                if (confirm("This action will DELETE this article. Confirm to proceed.") == false) {
-                    event.preventDefault();
-                } else {
+            buttonDelete.onclick = () => {
+                confirmModal.showModal();
+                document.querySelector('#confirmTitle').textContent = "Action Required";
+                document.querySelector('#confirmMessage').textContent = "This action will DELETE this article. Confirm to proceed.";
+                document.querySelector('#confirmButton').onclick = () => {
+                    confirmModal.close();
                     articleDelete(wrongFormatArticleData.pageId);
                 }
             };

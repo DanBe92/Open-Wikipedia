@@ -1,17 +1,15 @@
-</div> 
+</div>
 <div class="drawer-side w-full mb-5 rounded-b-2xl z-10">
-  <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> 
+  <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
   <ul class="menu p-4 w-4/5 md:w-80 min-h-full bg-base-200 text-base-content">
     <!-- Sidebar content here -->
     <!-- Search input -->
     <%- include('../components/search_input_component'); %>
 
-    <!-- Sidebar list here -->
-    <li><a href="/homepage">Homepage</a></li>
-    <li><a onclick="window.location.href = `/user/library`">Library</a></li>
-    <li><a onclick="window.location.href = `/user/new_article`">Create New Article</a></li>
-    <li><a onclick="window.location.href = `/user`">Today's Article</a></li>
-    <li><a onclick="window.location.href = `/user`">Profile</a></li>
+      <!-- Sidebar list here -->
+      <li><a onclick="window.location.href = `/user`">Profile</a></li>
+      <li><a onclick="window.location.href = `/user/library`">Library</a></li>
+      <li><a onclick="window.location.href = `/user/new_article`">Create New Article</a></li>
   </ul>
 </div>
 </div>

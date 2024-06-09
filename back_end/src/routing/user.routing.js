@@ -36,7 +36,7 @@ export default function userRouting(app) {
     // Delete User
     app.delete("/user", isLoggedIn, async (req, res) => {
 
-        const userId = req.user.id
+        const userId = req.body.userId
         const user = await prisma.user.findUnique({ where: { id: userId } });
 
         if (user) {
