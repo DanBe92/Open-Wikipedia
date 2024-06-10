@@ -271,12 +271,9 @@
                                     placeholder="Email">
                                 <input type="password" class="input input-bordered w-full" name="loginPassword"
                                     placeholder="Password">
-                                <div class="flex justify-between items-center">
-                                    <a href="#" class="text-blue-500">Forgot Password?</a>
-                                    <div class="modal-action">
-                                        <button type="button" class="btn" onclick="logInModal.close()">Close</button>
-                                        <button class="btn btn-primary">Log In</button>
-                                    </div>
+                                <div class="modal-action flex justify-between items-center">
+                                    <button type="button" class="btn" onclick="logInModal.close()">Close</button>
+                                    <button class="btn btn-primary">Log In</button>
                                 </div>
                             </form>
                         </div>
@@ -299,9 +296,9 @@
                 <%- include('../components/after_page_content_user_not_logged'); %>
 
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-        <script src="/scripts/sign_up.js"></script>
-        <script src="/scripts/login.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+                    <script src="/scripts/sign_up.js"></script>
+                    <script src="/scripts/login.js"></script>
 
 </body>
 

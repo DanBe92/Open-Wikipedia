@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
+    <link rel="stylesheet" href="/style/output.css">
 </head>
+
 <body>
-    <h1 class="text-2xl font-bold"><a href="/homepage">Open-Wiki</a></h1>
+    <div class="navbar justify-center items-center bg-gray-700 h-20">
+        <a href="/homepage" class="m-auto my-2">
+            <img src="/assets/Logo-Open-Wiki.png" alt="logo" class="size-20 cursor-pointer">
+        </a>
+    </div>
+    <div class="hero min-h-[calc(100vh-80px)] landing-hero ">
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+            <div class="max-w-lg flex flex-col items-center">
+                <h1 class="mb-5 text-6xl md:text-8xl font-bold text-white">Open-Wiki</h1>
+                <a href="/homepage" class="btn text-xl">Start Searching</a>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>

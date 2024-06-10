@@ -21,6 +21,7 @@ function articleDelete(pageId) {
                 alertHandler(`The article ${article.articleData.blocks[1].data.text} has been deleted.`, 'Action Success');
                 document.querySelector('#alertButton').onclick = () => {
                     alertModal.close();
+                    localStorage.removeItem('pageId');
                     window.location.href = '/user/library';
                 };
 

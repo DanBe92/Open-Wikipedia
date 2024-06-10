@@ -161,15 +161,15 @@ async function saveEditedArticle() {
 
     articleData = await editor.save();
 
-    if (isArticle) {
+    if (isArticle.isArticle) {
         confirmModal.showModal();
         document.querySelector('#confirmTitle').textContent = "Article Found";
         document.querySelector('#confirmMessage').textContent = "This article is already saved in your library. Do you want to save it anyway? Previous data will be lost. Confirm to proceed.";
         document.querySelector('#confirmButton').onclick = () => {
             confirmModal.close();
-            saveToDatabase("Update");
+            saveToDatabase();
         }
     } else {
-        saveToDatabase("Update");
+        saveToDatabase();
     }
 }

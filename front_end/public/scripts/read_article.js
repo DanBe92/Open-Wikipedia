@@ -101,6 +101,7 @@ async function showArticleFromSearch(limit = 6) {
         const articleData = await response.json();
         createArticle(articleData);
         localStorage.setItem('fullArticleData', JSON.stringify(articleData));
+        localStorage.setItem('pageId', JSON.stringify(articleData.pageId));
     }
 
 }

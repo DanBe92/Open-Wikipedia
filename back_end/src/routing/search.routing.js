@@ -74,7 +74,7 @@ export default function searchRouting(app) {
 
             const url = req.body.articleUrl
             const limit = req.body.limit
-            
+
             const data = await axios.get(url);
 
             const dom = new JSDOM(data.data);
@@ -83,6 +83,8 @@ export default function searchRouting(app) {
             let paragraphs = [];
             let urlImage;
             let baseUrlImage;
+
+            const page = await wiki.page(domTitle);
 
             dom.window.document.querySelectorAll('#mw-content-text p').forEach((p, index) => {
 
@@ -104,7 +106,8 @@ export default function searchRouting(app) {
             res.json({
                 'title': domTitle,
                 'paragraphs': paragraphs,
-                'urlImage': urlImage ? "https:" + urlImage : baseUrlImage
+                'urlImage': urlImage ? "https:" + urlImage : baseUrlImage,
+                'pageId': page.pageid
             })
 
         } catch (error) {
@@ -115,7 +118,7 @@ export default function searchRouting(app) {
 
 
     // Gets the Daily Article
-    app.get('/dailyArticlePreview', async (req, res) => {
+    app.get('/dailyArticlePreview', isLoggedIn, async (req, res) => {
         try {
 
             // const language = await wiki.setLang('it');
@@ -124,11 +127,11 @@ export default function searchRouting(app) {
 
             const dom = new JSDOM(data.data);
 
-            const imgCaption = dom.window.document.querySelector('#mp-tfa-img .thumbcaption').textContent;
-            const tfaTitle = dom.window.document.querySelector('#mp-tfa b:last-child a').title;
-            const tfaUrlImage = dom.window.document.querySelector('#mp-tfa-img img').src;
-            const tfaUrl = 'https://en.wikipedia.org' + dom.window.document.querySelector('#mp-tfa b:last-child a').href;
-            const tfaParagraph = dom.window.document.querySelector('#mp-tfa').textContent.replace(imgCaption, '').replace('\n\n\n\n', '').split('(Full article...)\n')[0];
+            const imgCaption = dom.window.document.querySelector('#mp-tfa-img .thumbcaption')?.textContent;
+            const tfaTitle = dom.window.document.querySelector('#mp-tfa b:last-child a')?.title;
+            const tfaUrlImage = dom.window.document.querySelector('#mp-tfa-img img')?.src;
+            const tfaUrl = 'https://en.wikipedia.org' + dom.window.document.querySelector('#mp-tfa b:last-child a')?.href;
+            const tfaParagraph = dom.window.document.querySelector('#mp-tfa')?.textContent.replace(imgCaption, '').replace('\n\n\n\n', '').split('(Full article...)\n')[0];
             const baseUrlImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png"
 
             res.status(200).json({

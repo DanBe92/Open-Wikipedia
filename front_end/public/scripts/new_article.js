@@ -21,7 +21,12 @@ async function saveToDatabase(articleData) {
         isArticle = await res.json();
     }
 
-    if (articleData.blocks[0].type !== 'image') {
+    if (articleData.blocks.length <= 0) {
+        alertHandler("You can't save an empty article", "Hold on!");
+        return
+    }
+
+    if (articleData.blocks[0]?.type !== 'image') {
         articleData.blocks.unshift({
             type: "image",
             data: {
@@ -29,6 +34,16 @@ async function saveToDatabase(articleData) {
                     url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png",
                 },
                 caption: "WikiLogo-img"
+            }
+        })
+    }
+
+    if (articleData.blocks[1]?.type !== 'header') {
+        articleData.blocks.unshift({
+            type: "header",
+            data: {
+                text: "Add your title here. This is just a placeholder",
+                level: 1,
             }
         })
     }
@@ -56,13 +71,24 @@ async function saveToDatabase(articleData) {
     alertHandler(error.message)
 }
 
-
 const editor = new EditorJS({
     holderId: 'editorjs',
     tools: {
         header: {
             class: Header,
         },
+        image: {
+            class: ImageTool,
+            config: {
+                endpoints: {
+                    byFile: 'http://localhost:8000/upload', // Your backend file uploader endpoint
+                },
+                additionalRequestHeaders: {
+                    'authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            }
+
+        }
     },
     autofocus: true,
 });
@@ -71,5 +97,5 @@ async function saveNewArticle() {
 
     const articleData = await editor.save();
     saveToDatabase(articleData);
-    
+
 }

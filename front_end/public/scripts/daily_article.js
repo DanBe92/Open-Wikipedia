@@ -1,7 +1,12 @@
 
 (async () => {
 
-    const dailyResult = await fetch('http://127.0.0.1:8000/dailyArticlePreview')
+    const dailyResult = await fetch('http://127.0.0.1:8000/dailyArticlePreview', {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+        }
+    });
 
     const dailyData = await dailyResult.json();
 
@@ -13,5 +18,4 @@
     document.querySelector('#articleImg').src = dailyData.urlImage;
     document.querySelector('#todaysArticleTitle').textContent = dailyData.articleTitle;
     document.querySelector('#todaysArticleContent').textContent = dailyData.paragraph;
-
 })();

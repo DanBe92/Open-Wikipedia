@@ -55,3 +55,7 @@
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
 }
+
+.landing-hero {
+    background-image: url('/assets/landing_page_bg.jpg');
+  }

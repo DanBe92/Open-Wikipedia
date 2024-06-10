@@ -1,5 +1,5 @@
 import prisma from '../../db/prisma.js';
-import { PrismaClient, Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 // import { userValidation } from '../validations/users.validations.js';
 import isLoggedIn from '../middleware/isLoggedIn.js';
 
@@ -46,8 +46,6 @@ export default function articleRouting(app, db) {
                 }
             })
 
-            console.log(articles);
-
             if (articles.length > 0) {
                 articles.forEach(article => {
                     delete article.id
@@ -55,10 +53,10 @@ export default function articleRouting(app, db) {
                 });
 
                 const sortedArticles = articles.sort(function (a, b) {
-                    if (a.articleData.blocks[1].data.text < b.articleData.blocks[1].data.text) {
+                    if (a.articleData.blocks[1].data.text.toLowerCase() < b.articleData.blocks[1].data.text.toLowerCase()) {
                         return -1;
                     }
-                    if (a.articleData.blocks[1].data.text > b.articleData.blocks[1].data.text) {
+                    if (a.articleData.blocks[1].data.text.toLowerCase() > b.articleData.blocks[1].data.text.toLowerCase()) {
                         return 1;
                     }
                     return 0;
