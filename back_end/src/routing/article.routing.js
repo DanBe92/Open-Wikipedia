@@ -33,6 +33,67 @@ export default function articleRouting(app, db) {
         }
     });
 
+
+    // Get Articles Search By Name and Sorted A to Z
+    app.post('/getArticlesByName', isLoggedIn, async (req, res) => {
+        try {
+            const title = req.body.librarySearch.toLowerCase();
+            const userId = req.user.id;
+            const paginationSearch = req.body.paginationSearch;
+
+            const articles = await prisma.article.findMany({
+                where: {
+                    userId: userId
+                }
+            });
+
+            let articlesResult = [];
+
+            if (articles.length > 0) {
+                articles.forEach(article => {
+                    delete article.id
+                    delete article.userId
+
+                    const articleTitle = article.articleData.blocks[1].data.text.toLowerCase()
+
+                    if (articleTitle.includes(title)) {
+                        articlesResult.push(article);
+                    }
+
+                });
+
+                const sortedArticles = articlesResult.sort(function (a, b) {
+                    if (a.articleData.blocks[1].data.text.toLowerCase() < b.articleData.blocks[1].data.text.toLowerCase()) {
+                        return -1;
+                    }
+                    if (a.articleData.blocks[1].data.text.toLowerCase() > b.articleData.blocks[1].data.text.toLowerCase()) {
+                        return 1;
+                    }
+                    return 0;
+                });
+
+                let nineSortedArticles = [];
+
+                let i = paginationSearch;
+
+                while (i < paginationSearch + 9 && i < sortedArticles.length) {
+                    nineSortedArticles.push(sortedArticles[i])
+                    i++
+                };
+
+                res.status(200).json({ 'isArticle': true, 'articles': nineSortedArticles })
+                return
+            }
+
+            res.json({ 'isArticle': false })
+
+        } catch (error) {
+            console.log(error);
+            res.json({ 'isArticle': false })
+        }
+    });
+
+
     // Get 9 User Articles A to Z
     app.post("/getUserArticles", isLoggedIn, async (req, res) => {
 
@@ -130,14 +191,6 @@ export default function articleRouting(app, db) {
 
             const userId = req.user.id;
             const pageId = +req.body.pageId;
-
-            // const newArticle = await prisma.article.create({
-            //     data: {
-            //         userId: userId,
-            //         pageId: pageId,
-            //         articleData: req.body.articleData
-            //     }
-            // });
 
             const newArticle = await prisma.article.upsert({
                 where: {

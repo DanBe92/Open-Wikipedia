@@ -2,7 +2,7 @@
 
 function userDelete(userId) {
 
-    fetch(`http://localhost:8000/user`, {
+    fetch(`${localhost}/user`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,

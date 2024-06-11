@@ -1,7 +1,7 @@
 
 (async () => {
 
-    const dailyResult = await fetch('http://127.0.0.1:8000/dailyArticlePreview', {
+    const dailyResult = await fetch(`${localhost}/dailyArticlePreview`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'

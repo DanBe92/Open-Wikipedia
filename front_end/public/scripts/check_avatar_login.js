@@ -1,6 +1,8 @@
 
 let user = JSON.parse(localStorage.getItem('user'));
 
+const localhost = 'http://localhost:8000';
+
 function alertHandler(alertMessage, alertTitle = "Something is Wrong") {
     alertModal.showModal();
     document.querySelector('#alertTitle').textContent = alertTitle;
@@ -11,7 +13,7 @@ function alertHandler(alertMessage, alertTitle = "Something is Wrong") {
 };
 
 (async () => {
-    const response = await fetch(`http://localhost:8000/user`,
+    const response = await fetch(`${localhost}/user`,
         {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

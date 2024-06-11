@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <link rel="stylesheet" href="/style/output.css">
 </head>
+
 <body>
 
     <!-- Navbar -->
     <%- include('../components/navbar'); %>
 
-    <div class="container-custom">
-        <div class="flex flex-col justify-center items-center gap-4">
-            <div class="card w-96 md:w-full bg-base-100 shadow-xl">
-                <div class="card-body">
-                    <h2 class="card-title text-2xl font-bold">About Us</h2>
-                    <p>We are a team of passionate professionals dedicated to providing innovative and reliable solutions in the field of technical support and consulting. Our many years of experience have allowed us to gain a deep understanding of our clients' needs and to develop tailored services that exceed their expectations.</p>
-                    <p>At our company, we prioritize customer care, ensuring personalized and timely service at every stage of collaboration. Each member of our team brings unique skills and a strong passion for their work, contributing to collective success and our clients' satisfaction.</p>
-                    <p>We are constantly committed to improving and adapting our services to the changing needs of the market while maintaining high standards of quality and reliability. We are proud to be a benchmark in the industry and strive to maintain our clients' trust through operational excellence and transparency in relationships.</p>
-                    <p>Learn more about our history, mission, and dedicated team by visiting other sections of our website.</p>
+        <!-- First Drawer Part -->
+        <%- include('../components/before_page_content_user_not_logged'); %>
+
+            <div class="container-custom">
+                <div class="flex flex-col justify-center items-center gap-4">
+                    <div class="card w-96 md:w-full bg-base-100 shadow-xl">
+                        <div class="card-body">
+                            <h2 class="card-title text-2xl font-bold">About Us</h2>
+                            <p>We are a team of passionate professionals dedicated to providing innovative and reliable
+                                solutions in the field of technical support and consulting. Our many years of experience
+                                have allowed us to gain a deep understanding of our clients' needs and to develop
+                                tailored services that exceed their expectations.</p>
+                            <p>At our company, we prioritize customer care, ensuring personalized and timely service at
+                                every stage of collaboration. Each member of our team brings unique skills and a strong
+                                passion for their work, contributing to collective success and our clients'
+                                satisfaction.</p>
+                            <p>We are constantly committed to improving and adapting our services to the changing needs
+                                of the market while maintaining high standards of quality and reliability. We are proud
+                                to be a benchmark in the industry and strive to maintain our clients' trust through
+                                operational excellence and transparency in relationships.</p>
+                            <p>Learn more about our history, mission, and dedicated team by visiting other sections of
+                                our website.</p>
+                        </div>
+
+                    </div>
                 </div>
-                
             </div>
-        </div>
-    </div>
-    <!-- Footer component -->
-    <%- include('../components/footer'); %>
-    <!-- Footer component end -->
-    <script src="/scripts/check_avatar_login.js"></script>
+
+            <!-- Footer component -->
+            <%- include('../components/footer'); %>
+
+                <!-- Last Drawer Part -->
+                <%- include('../components/after_page_content_user_not_logged'); %>
+
 </body>
+
 </html>

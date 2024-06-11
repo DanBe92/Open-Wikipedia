@@ -108,7 +108,7 @@ export default function searchRouting(app) {
                 'paragraphs': paragraphs,
                 'urlImage': urlImage ? "https:" + urlImage : baseUrlImage,
                 'pageId': page.pageid
-            })
+            });
 
         } catch (error) {
             console.log(`Error: ${error}`);

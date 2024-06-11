@@ -34,7 +34,7 @@ loginForm.addEventListener('submit', async (e) => {
         return
     }
 
-    const res = await fetch('http://localhost:8000/login', {
+    const res = await fetch(`${localhost}/login`, {
         body: JSON.stringify({
             loginEmail,
             loginPassword

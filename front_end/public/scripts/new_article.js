@@ -7,7 +7,7 @@ async function saveToDatabase(articleData) {
 
         pageId = Math.floor(Math.random() * 9999999999);
 
-        const res = await fetch('http://localhost:8000/checkArticle', {
+        const res = await fetch(`${localhost}/checkArticle`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -48,7 +48,7 @@ async function saveToDatabase(articleData) {
         })
     }
 
-    const response = await fetch('http://localhost:8000/articles', {
+    const response = await fetch(`${localhost}/articles`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -81,7 +81,7 @@ const editor = new EditorJS({
             class: ImageTool,
             config: {
                 endpoints: {
-                    byFile: 'http://localhost:8000/upload', // Your backend file uploader endpoint
+                    byFile: `${localhost}/upload`,
                 },
                 additionalRequestHeaders: {
                     'authorization': `Bearer ${localStorage.getItem('token')}`,

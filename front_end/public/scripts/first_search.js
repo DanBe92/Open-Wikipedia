@@ -27,7 +27,7 @@ document.querySelector('#searchButton')
             return
         }
 
-        const response = await fetch('http://localhost:8000/firstSearch', {
+        const response = await fetch(`${localhost}/firstSearch`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -55,7 +55,7 @@ document.querySelector('#searchButton')
 
                 li.onclick = async () => {
 
-                    const response = await fetch('http://localhost:8000/getPageUrl', {
+                    const response = await fetch(`${localhost}/getPageUrl`, {
                         method: 'POST',
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`,

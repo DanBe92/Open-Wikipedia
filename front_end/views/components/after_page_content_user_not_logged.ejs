@@ -16,6 +16,7 @@
 <script>
 
     let user = JSON.parse(localStorage.getItem('user'));
+    const localhost = 'http://localhost:8000';
 
     function alertHandler(alertMessage, alertTitle = "Something is Wrong") {
         alertModal.showModal();

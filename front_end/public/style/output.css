@@ -2699,6 +2699,11 @@ html:has(.drawer-toggle:checked) {
   height: 6rem;
 }
 
+.size-8 {
+  width: 2rem;
+  height: 2rem;
+}
+
 .h-20 {
   height: 5rem;
 }
@@ -2889,6 +2894,10 @@ html:has(.drawer-toggle:checked) {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .self-center {
@@ -3304,7 +3313,15 @@ html:has(.drawer-toggle:checked) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
   .lg\:flex-col {
     flex-direction: column;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
   }
 }

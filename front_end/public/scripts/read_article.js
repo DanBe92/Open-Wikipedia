@@ -68,7 +68,7 @@ async function showArticleFromSearch(limit = 6) {
 
     document.querySelector('#textContent')?.remove();
 
-    const response = await fetch('http://localhost:8000/getFullArticle', {
+    const response = await fetch(`${localhost}/getFullArticle`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,

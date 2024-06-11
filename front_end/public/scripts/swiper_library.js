@@ -29,12 +29,11 @@ function formatData(wrongFormatArticleData) {
     return articleData
 }
 
-// Fetch and show all articles saved by current user
 
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
 (async () => {
-    const response = await fetch('http://localhost:8000/getLatestUserArticles', {
+    const response = await fetch(`${localhost}/getLatestUserArticles`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'

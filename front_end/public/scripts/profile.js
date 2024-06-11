@@ -100,7 +100,7 @@ userForm.addEventListener('submit', (e) => {
         return
     }
 
-    fetch('http://localhost:8000/user', {
+    fetch(`${localhost}/user`, {
 
         method: 'PUT',
         headers: {

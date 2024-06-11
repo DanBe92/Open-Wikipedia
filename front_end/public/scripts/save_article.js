@@ -12,7 +12,7 @@ async function saveToDatabase() {
 
         pageId = Math.floor(Math.random() * 9999999999);
 
-        const res = await fetch('http://localhost:8000/checkArticle', {
+        const res = await fetch(`${localhost}/checkArticle`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -26,7 +26,7 @@ async function saveToDatabase() {
         isArticle = await res.json();
     }
 
-    const response = await fetch('http://localhost:8000/articles', {
+    const response = await fetch(`${localhost}/articles`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -110,7 +110,7 @@ async function saveNewArticle() {
 
             let pageId = JSON.parse(localStorage.getItem('pageId'));
 
-            const res = await fetch('http://localhost:8000/checkArticle', {
+            const res = await fetch(`${localhost}/checkArticle`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -146,7 +146,7 @@ async function saveNewArticle() {
 async function saveEditedArticle() {
     const pageId = JSON.parse(localStorage.getItem('pageId'));
 
-    const response = await fetch('http://localhost:8000/checkArticle', {
+    const response = await fetch(`${localhost}/checkArticle`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
