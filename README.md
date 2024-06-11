@@ -1,4 +1,6 @@
-﻿# Project Overview
+﻿# Open-Wiki
+
+## Project Overview
 The website is designed to maintain the ease of search provided by Wikipedia while implementing additional features to enhance user interaction. Users can search for articles using the Wikipedia API and save their preferred articles to their personal library. Furthermore, the site allows users to edit and update these saved articles, providing a customized experience. This added functionality enables users to manage and curate their content, ensuring it meets their specific needs. The user-friendly interface and intuitive navigation, combined with the ability to personalize articles, make this platform a powerful tool for both casual users and researchers alike.
 
 #### Homepage:
