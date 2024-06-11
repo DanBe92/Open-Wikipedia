@@ -76,10 +76,6 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.get('/homepageCarousel', (req, res) => {
-    res.send('FetchedCarouselHere');
-});
-
 
 userRouting(app);
 authRouting(app);

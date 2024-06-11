@@ -1,6 +1,5 @@
 import prisma from '../../db/prisma.js';
 import { Prisma } from '@prisma/client'
-// import { userValidation } from '../validations/users.validations.js';
 import isLoggedIn from '../middleware/isLoggedIn.js';
 
 export default function articleRouting(app, db) {
@@ -259,7 +258,6 @@ export default function articleRouting(app, db) {
 
     // Delete Article
     app.delete("/article", isLoggedIn, async (req, res) => {
-
         try {
 
             const userId = req.user.id
@@ -277,12 +275,9 @@ export default function articleRouting(app, db) {
             res.json(deletedArticle)
 
         } catch (err) {
-
             console.log(err);
             res.status(404).json({ message: 'Article not Found' })
-
         }
-
     })
 
 }
