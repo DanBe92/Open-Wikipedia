@@ -23,7 +23,7 @@ Relationships are managed by Prisma by linking the `_id` field of the User colle
 	    articles article[]
 	}
  
- #### UserDatabase Example
+ #### User Database Example
 
     {
 	    "_id": {
@@ -164,7 +164,7 @@ Login requests are handled by sending data in POST to the login route, where the
 The backend uses two main middleware:
 
 -   `isLoggedIn`: Utilizes the `jwt` library to create and verify token validity.
--   `userValidation`: Used only during new user registration to validate the received data.
+-   `userValidation`: Used only during new user registration to validate the received data using `validate` library.
 
 ### Wikipedia API and Scraping
 
