@@ -40,6 +40,10 @@ async function getSearchArticles(paginationSearch = 0) {
 
     const data = await response.json();
 
+    document.querySelector('#searchInLibraryInput').value = '';
+    document.querySelector('#librarySearchNoResults')?.remove();
+    document.querySelector('#paginationSearchLibraryButtons').style.display = 'none';
+
     if (!data.isArticle) {
         const h2 = document.createElement('h2');
         h2.textContent = "This search has no results.";

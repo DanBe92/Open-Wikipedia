@@ -118,10 +118,11 @@ async function getUserArticles(pagination = 0) {
     document.querySelector('#librarySearchNoResults')?.remove();
     document.querySelector('#paginationSearchLibraryButtons').style.display = 'none';
 
-
     if (articlesObjectList.length > 0) {
 
         document.querySelector('#paginationButtons').style.display = 'flex';
+
+        document.querySelector('#searchInLibrary').style.display = 'flex';
 
         showArticles(articlesObjectList)
 
